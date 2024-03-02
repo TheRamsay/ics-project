@@ -1,8 +1,7 @@
 namespace KlidecekIS.DAL.Entities;
 
-public class SubjectEntity : IEntity
+public record SubjectEntity : EntityBase
 {
-    public Guid Id { get; set; }
     public required string Name { get; set; }
     public required string Short { get; set; }
 

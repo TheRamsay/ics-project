@@ -1,8 +1,7 @@
 namespace KlidecekIS.DAL.Entities;
 
-public class GradeEntity : IEntity
+public record GradeEntity : EntityBase
 {
-    public Guid Id { get; set; }
     public double Score { get; set; }
     public required string Note { get; set; }
     

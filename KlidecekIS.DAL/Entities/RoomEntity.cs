@@ -1,6 +1,6 @@
 namespace KlidecekIS.DAL.Entities;
 
-public record RoomEntity : IEntity
+public record RoomEntity : EntityBase
 {
     public Guid Id { get; set; }
     

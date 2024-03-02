@@ -2,9 +2,8 @@ using KlidecekIS.DAL.Enums;
 
 namespace KlidecekIS.DAL.Entities;
 
-public class ActivityEntity : IEntity
+public record ActivityEntity : EntityBase
 {
-    public Guid Id { get; set; }
     public required DateTime Start { get; set; }
     public required DateTime End { get; set; }
     public required ActivityType ActivityType { get; set; }

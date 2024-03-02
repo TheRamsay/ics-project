@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlidecekIS", "KlidecekIS\KlidecekIS.csproj", "{B1C152ED-D6F9-4056-AEEF-9179A6A15790}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlidecekIS.DAL", "KlidecekIS.DAL\KlidecekIS.DAL.csproj", "{BDFAF71B-EE50-48B7-855A-C971006B42D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B1C152ED-D6F9-4056-AEEF-9179A6A15790}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1C152ED-D6F9-4056-AEEF-9179A6A15790}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1C152ED-D6F9-4056-AEEF-9179A6A15790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDFAF71B-EE50-48B7-855A-C971006B42D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDFAF71B-EE50-48B7-855A-C971006B42D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDFAF71B-EE50-48B7-855A-C971006B42D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDFAF71B-EE50-48B7-855A-C971006B42D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

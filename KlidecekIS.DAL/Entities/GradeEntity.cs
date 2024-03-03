@@ -9,5 +9,5 @@ public record GradeEntity : EntityBase
     public required ActivityEntity Activity { get; set; }
     
     public required Guid StudentId { get; set; }
-    public required StudentEntity StudentEntity { get; set; }
+    public required StudentEntity Student { get; set; }
 }

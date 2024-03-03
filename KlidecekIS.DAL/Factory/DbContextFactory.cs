@@ -2,10 +2,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KlidecekIS.DAL.Factory;
 
-public class DbContextSqLiteFactory : IDbContextFactory<KliedecekDbContext>
+public class DbContextSqLiteFactory : IDbContextFactory<KlidecekDbContext>
 {
     private readonly bool _seedTestingData;
-    private readonly DbContextOptionsBuilder<KliedecekDbContext> _contextOptionsBuilder = new();
+    private readonly DbContextOptionsBuilder<KlidecekDbContext> _contextOptionsBuilder = new();
 
     public DbContextSqLiteFactory(string databaseName, bool seedTestingData = false)
     {
@@ -15,5 +15,5 @@ public class DbContextSqLiteFactory : IDbContextFactory<KliedecekDbContext>
 
     }
 
-    public KliedecekDbContext CreateDbContext() => new(_contextOptionsBuilder.Options);
+    public KlidecekDbContext CreateDbContext() => new(_contextOptionsBuilder.Options);
 }

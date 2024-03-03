@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KlidecekIS.DAL.Migrations
 {
     [DbContext(typeof(KlidecekDbContext))]
-    [Migration("20240302230000_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240303124424_Activity can have multiple grades")]
+    partial class Activitycanhavemultiplegrades
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,9 +34,6 @@ namespace KlidecekIS.DAL.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("End")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("GradeId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("RoomId")
@@ -73,18 +70,14 @@ namespace KlidecekIS.DAL.Migrations
                     b.Property<double>("Score")
                         .HasColumnType("REAL");
 
-                    b.Property<Guid>("StudentEntityId")
-                        .HasColumnType("TEXT");
-
                     b.Property<Guid>("StudentId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActivityId")
-                        .IsUnique();
+                    b.HasIndex("ActivityId");
 
-                    b.HasIndex("StudentEntityId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Grades");
                 });
@@ -111,7 +104,6 @@ namespace KlidecekIS.DAL.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -183,20 +175,20 @@ namespace KlidecekIS.DAL.Migrations
             modelBuilder.Entity("KlidecekIS.DAL.Entities.GradeEntity", b =>
                 {
                     b.HasOne("KlidecekIS.DAL.Entities.ActivityEntity", "Activity")
-                        .WithOne("Grade")
-                        .HasForeignKey("KlidecekIS.DAL.Entities.GradeEntity", "ActivityId")
+                        .WithMany("Grades")
+                        .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KlidecekIS.DAL.Entities.StudentEntity", "StudentEntity")
+                    b.HasOne("KlidecekIS.DAL.Entities.StudentEntity", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentEntityId")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Activity");
 
-                    b.Navigation("StudentEntity");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("StudentEntitySubjectEntity", b =>
@@ -216,8 +208,7 @@ namespace KlidecekIS.DAL.Migrations
 
             modelBuilder.Entity("KlidecekIS.DAL.Entities.ActivityEntity", b =>
                 {
-                    b.Navigation("Grade")
-                        .IsRequired();
+                    b.Navigation("Grades");
                 });
 
             modelBuilder.Entity("KlidecekIS.DAL.Entities.RoomEntity", b =>

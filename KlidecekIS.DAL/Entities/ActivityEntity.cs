@@ -12,9 +12,8 @@ public record ActivityEntity : EntityBase
     public required Guid SubjectId { get; set; }
     public required SubjectEntity Subject { get; set; }
     
-    public required Guid GradeId { get; set; }
-    public required GradeEntity Grade { get; set; }
-    
     public required Guid RoomId { get; set; }
     public required RoomEntity Room { get; set; }
+    
+    public ICollection<GradeEntity> Grades { get; init; } = new List<GradeEntity>();
 }

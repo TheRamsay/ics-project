@@ -20,6 +20,11 @@ public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoDat
             .HasMany<SubjectEntity>(i => i.Subjects)
             .WithMany(i => i.Students);
 
+        modelBuilder.Entity<StudentEntity>()
+            .HasMany<GradeEntity>(i => i.Grades)
+            .WithOne(i => i.Student)
+            .HasForeignKey(i => i.StudentId);
+
         modelBuilder.Entity<ActivityEntity>()
             .HasOne<SubjectEntity>(i => i.Subject)
             .WithMany(i => i.Activities)

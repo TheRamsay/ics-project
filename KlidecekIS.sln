@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlidecekIS.DAL.Tests", "Kli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlidecekIS.Common.Tests", "KlidecekIS.Common.Tests\KlidecekIS.Common.Tests.csproj", "{57A7CE29-99E2-499B-A736-DBCE5650A3AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlidecekIS.BL", "KlidecekIS.BL\KlidecekIS.BL.csproj", "{D9294F2D-7250-4133-B390-3BC52444602B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlidecekIS.BL.Tests", "KlidecekIS.BL.Tests\KlidecekIS.BL.Tests.csproj", "{74BC280A-101E-4980-8C42-734035A06E9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{57A7CE29-99E2-499B-A736-DBCE5650A3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57A7CE29-99E2-499B-A736-DBCE5650A3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57A7CE29-99E2-499B-A736-DBCE5650A3AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9294F2D-7250-4133-B390-3BC52444602B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9294F2D-7250-4133-B390-3BC52444602B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9294F2D-7250-4133-B390-3BC52444602B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9294F2D-7250-4133-B390-3BC52444602B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74BC280A-101E-4980-8C42-734035A06E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74BC280A-101E-4980-8C42-734035A06E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74BC280A-101E-4980-8C42-734035A06E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74BC280A-101E-4980-8C42-734035A06E9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

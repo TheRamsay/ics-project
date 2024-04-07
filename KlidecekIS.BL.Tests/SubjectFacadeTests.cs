@@ -137,4 +137,26 @@ public class SubjectFacadeTests : FacadeTestsBase
         var subject = subjects.Single(i => i.Id == SubjectSeeds.SubjectEntity.Id);
         DeepAssert.Equal(SubjectSeeds.SubjectEntity, Mapper.Map<SubjectEntity>(subject));
     }
+
+    [Fact]
+    public async Task SortShortDescendingTest()
+    {
+        // Arrange & Act
+        var searchResults = await _subjectFacadeSut.SortBy(p => p.Short, false);
+
+
+        // Assert
+        Assert.Equal(SubjectSeeds.SubjectEntity.Short, searchResults.Last().Short);
+    }
+
+    [Fact]
+    public async Task SortShortAscendingTest()
+    {
+        // Arrange & Act
+        var searchResults = await _subjectFacadeSut.SortBy(p => p.Short, true);
+
+
+        // Assert
+        Assert.Equal(SubjectSeeds.SubjectEntity.Short, searchResults.First().Short);
+    }
 }

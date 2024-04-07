@@ -41,8 +41,8 @@ public static class SubjectSeeds
     {
         modelBuilder.Entity<SubjectEntity>().HasData(
             SubjectEntity with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() },
-            SubjectEntityUpdate,
-            SubjectEntityDelete
+            SubjectEntityUpdate with  { Short = "aaa"},
+            SubjectEntityDelete with{ Short = "bbb"}
         );
     }
 }

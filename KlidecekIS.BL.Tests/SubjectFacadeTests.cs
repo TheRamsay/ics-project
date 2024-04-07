@@ -10,6 +10,7 @@ using Xunit.Abstractions;
 
 namespace KlidecekIS.BL.Tests;
 
+[Collection("Sequential")]
 public class SubjectFacadeTests : FacadeTestsBase
 {
     private readonly ISubjectFacade _subjectFacadeSut;

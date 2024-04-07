@@ -6,6 +6,7 @@ using Xunit;
 
 namespace KlidecekIS.BL.Tests;
 
+[Collection("Sequential")]
 public class MapperTests
 {
     [Fact]

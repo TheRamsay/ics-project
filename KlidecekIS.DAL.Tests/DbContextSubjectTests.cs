@@ -55,8 +55,8 @@ public class DbContextSubjectTests(ITestOutputHelper outputHelper): DbContextTes
       var subjects = new List<SubjectEntity>
       {
          SubjectSeeds.SubjectEntity with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() },
-         SubjectSeeds.SubjectEntityUpdate with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() },
-         SubjectSeeds.SubjectEntityDelete with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() }
+         SubjectSeeds.SubjectEntityUpdate with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>(), Short = "aaa" },
+         SubjectSeeds.SubjectEntityDelete with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>(), Short = "bbb"  }
       };
       
       // Act

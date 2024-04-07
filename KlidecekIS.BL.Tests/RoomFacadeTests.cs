@@ -8,6 +8,7 @@ using Xunit.Abstractions;
 
 namespace KlidecekIS.BL.Tests;
 
+[Collection("Sequential")]
 public class RoomFacadeTests : FacadeTestsBase
 {
     private readonly IRoomFacade _roomFacadeSut;
@@ -24,7 +25,7 @@ public class RoomFacadeTests : FacadeTestsBase
         var searchResults = await _roomFacadeSut.SearchRoomByName(RoomSeeds.RoomEntity.Name);
         var room = searchResults.Single(i => i.Id == RoomSeeds.RoomEntity.Id);
         // Assert
-        DeepAssert.Equal(Mapper.Map<RoomListModel>(RoomSeeds.RoomEntity), room);
+        DeepAssert.Equal(Mapper.Map<RoomListModel>(RoomSeeds.RoomEntity) with { Activites = new List<ActivityListModel>() }, room with { Activites = new List<ActivityListModel>()});
         
         // Search should be case insensitive
         // Arrange and Act

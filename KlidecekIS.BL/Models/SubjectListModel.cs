@@ -6,7 +6,7 @@ public record SubjectListModel: ModelBase
     public required string Short { get; set; }
 
     public ICollection<ActivityListModel> Activities { get; set; } = new List<ActivityListModel>();
-    public ICollection<StudentListModel> Students { get; set; } = new List<StudentListModel>();
+    public ICollection<StudentSubjectListModel> Students { get; set; } = new List<StudentSubjectListModel>();
     
     public static SubjectListModel Empty => new SubjectListModel()
     {
@@ -14,6 +14,6 @@ public record SubjectListModel: ModelBase
         Name = string.Empty,
         Short = string.Empty,
         Activities = new List<ActivityListModel>(),
-        Students = new List<StudentListModel>()
+        Students = new List<StudentSubjectListModel>()
     };
 }

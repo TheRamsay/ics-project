@@ -24,13 +24,13 @@ public static class StudentSeeds
     public static readonly StudentEntity StudentEntityUpdate = StudentEntity with
     {
         Id = Guid.Parse("fabde0ca-eefe-443f-baf4-3d96cc2cbf2e"),
-        Subjects = new List<SubjectEntity>()
+        Subjects = new List<StudentSubjectEntity>()
     };
     
     public static readonly StudentEntity StudentEntityDelete = StudentEntity with
     {
         Id = Guid.Parse("facde0cd-aefe-443f-baf6-3d96cc2cbf2e"),
-        Subjects = new List<SubjectEntity>()
+        Subjects = new List<StudentSubjectEntity>()
     };
     
     public static void LoadLists()
@@ -40,7 +40,7 @@ public static class StudentSeeds
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<StudentEntity>().HasData(
-            StudentEntity with { Subjects = new List<SubjectEntity>() },
+            StudentEntity with { Subjects = new List<StudentSubjectEntity>() },
             StudentEntityUpdate,
             StudentEntityDelete
         );

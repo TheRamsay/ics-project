@@ -4,8 +4,6 @@ using KlidecekIS.DAL.UnitOfWork;
 
 namespace KlidecekIS.DAL.Tests;
 
-// Funny tests to check if my DAL works
-// TODO: rework I guess, or move them to integration tests
 public class RepositoryTests
 {
     [Fact]

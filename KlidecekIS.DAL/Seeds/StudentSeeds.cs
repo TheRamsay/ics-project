@@ -11,12 +11,12 @@ public static class StudentSeeds
         ImageUrl = "https://ibb.co/wCJZCvj",
         Name = "Dominik",
         Surname = "Huml",
-        Subjects = new List<SubjectEntity>()
+        Subjects = new List<StudentSubjectEntity>()
     };
 
     static StudentSeeds()
     {
-        Student.Subjects.Add(SubjectSeeds.SubjectISS);
+        // Student.Subjects.Add(SubjectSeeds.SubjectISS);
     }
 
     public static void Seed(this ModelBuilder modelBuilder)

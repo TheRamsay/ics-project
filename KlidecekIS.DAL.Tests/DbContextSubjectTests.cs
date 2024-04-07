@@ -45,7 +45,7 @@ public class DbContextSubjectTests(ITestOutputHelper outputHelper): DbContextTes
       var subjectFromDb = await KlidecekDbContextSUT.Subjects.SingleAsync(s => s.Id == subject.Id);
       
       // Assert
-      DeepAssert.Equal(subject with{ Activities = new List<ActivityEntity>(), Students = new List<StudentEntity>() }, subjectFromDb);
+      DeepAssert.Equal(subject with{ Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() }, subjectFromDb);
    }
    
    [Fact]
@@ -54,9 +54,9 @@ public class DbContextSubjectTests(ITestOutputHelper outputHelper): DbContextTes
       // Arrange
       var subjects = new List<SubjectEntity>
       {
-         SubjectSeeds.SubjectEntity with { Activities = new List<ActivityEntity>(), Students = new List<StudentEntity>() },
-         SubjectSeeds.SubjectEntityUpdate with { Activities = new List<ActivityEntity>(), Students = new List<StudentEntity>() },
-         SubjectSeeds.SubjectEntityDelete with { Activities = new List<ActivityEntity>(), Students = new List<StudentEntity>() }
+         SubjectSeeds.SubjectEntity with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() },
+         SubjectSeeds.SubjectEntityUpdate with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() },
+         SubjectSeeds.SubjectEntityDelete with { Activities = new List<ActivityEntity>(), Students = new List<StudentSubjectEntity>() }
       };
       
       // Act

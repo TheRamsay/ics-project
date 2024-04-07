@@ -11,7 +11,7 @@ public static class SubjectSeeds
         Name = "Signaly a Systemy",
         Short = "ISS",
         Activities = new List<ActivityEntity>(),
-        Students = new List<StudentEntity>()
+        Students = new List<StudentSubjectEntity>()
     };
     
     public static readonly SubjectEntity SubjectIFJ = new SubjectEntity()
@@ -20,13 +20,13 @@ public static class SubjectSeeds
         Name = "Formalni jazyky a Prekladace",
         Short = "IFJ",
         Activities = new List<ActivityEntity>(),
-        Students = new List<StudentEntity>()
+        Students = new List<StudentSubjectEntity>()
     };
 
     static SubjectSeeds()
     {
         SubjectISS.Activities.Add(ActivitySeeds.ActivityISS);
-        SubjectISS.Students.Add(StudentSeeds.Student);
+        // SubjectISS.Students.Add(StudentSeeds.Student);
     }
 
     public static void Seed(this ModelBuilder modelBuilder)

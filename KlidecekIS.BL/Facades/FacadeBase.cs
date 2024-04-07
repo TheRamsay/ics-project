@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq.Expressions;
 using AutoMapper;
 using KlidecekIS.BL.Facades.Interfaces;
 using KlidecekIS.BL.Models;
@@ -64,6 +65,18 @@ public abstract class
             .ToListAsync().ConfigureAwait(false);
 
         return ModelMapper.Map<List<TListModel>>(entities);
+    }
+    
+    public virtual async Task<IEnumerable<TListModel>> SortBy(Expression<Func<TEntity, object>> keySelector, bool ascending)
+    {
+        await using var uow = UnitOfWorkFactory.Create();
+        var entities = uow
+            .GetRepository<TEntity>()
+            .Get();
+
+        var sortedEntities = ascending ? entities.OrderBy(keySelector) : entities.OrderByDescending(keySelector);
+        
+        return ModelMapper.Map<List<TListModel>>(await sortedEntities.ToListAsync());
     }
 
     public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)

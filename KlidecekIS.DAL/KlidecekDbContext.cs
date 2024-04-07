@@ -16,17 +16,19 @@ public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoDat
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<StudentEntity>()
-            .HasMany<SubjectEntity>(i => i.Subjects)
+        modelBuilder.Entity<StudentSubjectEntity>()
+            .HasOne<StudentEntity>(i => i.Student)
+            .WithMany(i => i.Subjects)
+            .OnDelete(DeleteBehavior.Cascade);
+            
+        modelBuilder.Entity<StudentSubjectEntity>()
+            .HasOne<SubjectEntity>(i => i.Subject)
             .WithMany(i => i.Students)
-            .UsingEntity<StudentSubjectEntity>(
-                i => i.HasOne<SubjectEntity>().WithMany().HasForeignKey(x => x.SubjectId),
-                i => i.HasOne<StudentEntity>().WithMany().HasForeignKey(x => x.StudentId));
-        
-        modelBuilder.Entity<StudentEntity>()
-            .HasMany<GradeEntity>(i => i.Grades)
-            .WithOne(i => i.Student)
-            .HasForeignKey(i => i.StudentId);
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<StudentSubjectEntity>()
+            .HasIndex(ss => new { ss.StudentId, ss.SubjectId })
+            .IsUnique();
 
         modelBuilder.Entity<StudentEntity>()
             .HasMany<GradeEntity>(i => i.Grades)

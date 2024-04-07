@@ -1,3 +1,5 @@
+using AutoMapper;
+using KlidecekIS.BL.Mappers;
 using KlidecekIS.Common.Tests;
 using KlidecekIS.Common.Tests.Factories;
 using KlidecekIS.DAL;
@@ -10,13 +12,27 @@ namespace KlidecekIS.BL.Tests;
 
 public class FacadeTestsBase : IAsyncLifetime
 {
+    protected IMapper Mapper;
     protected FacadeTestsBase(ITestOutputHelper output)
     {
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
-
-        // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
-        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
+        
+        DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
+        
+        var config = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<StudentMapperProfile>();
+            cfg.AddProfile<RoomMapperProfile>();
+            cfg.AddProfile<ActivityMapperProfile>();
+            cfg.AddProfile<SubjectMapperProfile>();
+            cfg.AddProfile<GradeMapperProfile>();
+            cfg.AddProfile<StudentSubjectMapperProfile>();
+        });
+        var mapper = config.CreateMapper();
+        
+        Mapper = config.CreateMapper();
+        
         DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
     }

@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using KlidecekIS.BL.Models;
 using KlidecekIS.DAL.Entities;
 
@@ -12,4 +13,5 @@ public interface IFacade<TEntity, TListModel, TDetailModel>
     Task<TDetailModel?> GetAsync(Guid id);
     Task<IEnumerable<TListModel>> GetAsync();
     Task<TDetailModel> SaveAsync(TDetailModel model);
+    Task<IEnumerable<TListModel>> SortBy(Expression<Func<TEntity, object>> keySelector, bool ascending);
 }

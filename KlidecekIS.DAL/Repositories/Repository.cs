@@ -1,5 +1,4 @@
 using KlidecekIS.DAL.Entities;
-using KlidecekIS.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
 
 namespace KlidecekIS.DAL.Repositories;
@@ -30,13 +29,11 @@ public class Repository<TEntity>(
 
     public TEntity Insert(TEntity entity) => _dbSet.Add(entity).Entity;
     
+    // Using reflection to avoid writing a lot of boilerplate code
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {
         var existingEntity = await _dbSet.SingleAsync(i => i.Id == entity.Id);
 
-        // Update all properties of the existing entity with the new entity's properties
-        // Using reflection to avoid writing a lot of boilerplate code
-        // Idk if this legit, but it works (we pray) 😵‍💫
         foreach (var property in entity.GetType().GetProperties())
         {
             var value = property.GetValue(entity);

@@ -8,13 +8,6 @@ public class DbContextSQLiteTestingFactory(string databaseName, bool seedTesting
     public KlidecekDbContext CreateDbContext()
     {
         DbContextOptionsBuilder<KlidecekDbContext> builder = new();
-        // var dbContextOptionsBuilder =
-        //     builder
-        //         .EnableSensitiveDataLogging()
-        //         .UseSqlite($"Data Source={databaseName};Cache=Shared")
-        //         .LogTo(Console.WriteLine);
-        //
-        // var options = dbContextOptionsBuilder.Options;
         
         builder.UseSqlite($"Data Source={databaseName};Cache=Shared");
         

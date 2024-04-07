@@ -35,7 +35,6 @@ public static class StudentSeeds
     
     public static void LoadLists()
     {
-        // StudentEntity.Subjects.Add(SubjectSeeds.SubjectEntity);
     }
     
     public static void Seed(this ModelBuilder modelBuilder)

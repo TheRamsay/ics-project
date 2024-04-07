@@ -1,11 +1,8 @@
 using System.Collections;
-using System.Reflection;
 using AutoMapper;
 using KlidecekIS.BL.Facades.Interfaces;
 using KlidecekIS.BL.Models;
 using KlidecekIS.DAL.Entities;
-using KlidecekIS.DAL.Mappers;
-using KlidecekIS.DAL.Repositories;
 using KlidecekIS.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 

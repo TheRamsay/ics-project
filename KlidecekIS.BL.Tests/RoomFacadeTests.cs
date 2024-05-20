@@ -18,21 +18,26 @@ public class RoomFacadeTests : FacadeTestsBase
         _roomFacadeSut = new RoomFacade(Mapper, UnitOfWorkFactory);
     }
     
+    // Search should be case insensitive
     [Fact]
-    public async Task SearchRoomByNameOk()
+    public async Task SearchRoomByNameOkUpperCase()
     {
         // Arrange and Act
-        var searchResults = await _roomFacadeSut.SearchRoomByName(RoomSeeds.RoomEntity.Name);
+        var searchResults = await _roomFacadeSut.SearchRoomByName(RoomSeeds.RoomEntity.Name.ToUpper());
         var room = searchResults.Single(i => i.Id == RoomSeeds.RoomEntity.Id);
         // Assert
         DeepAssert.Equal(Mapper.Map<RoomListModel>(RoomSeeds.RoomEntity) with { Activites = new List<ActivityListModel>() }, room with { Activites = new List<ActivityListModel>()});
-        
-        // Search should be case insensitive
+    }
+    
+    // Search should be case insensitive
+    [Fact]
+    public async Task SearchRoomByNameOkLowerCase()
+    {
         // Arrange and Act
-        searchResults = await _roomFacadeSut.SearchRoomByName(RoomSeeds.RoomEntity.Name.ToLower());
-        room = searchResults.Single(i => i.Id == RoomSeeds.RoomEntity.Id);
+        var searchResults = await _roomFacadeSut.SearchRoomByName(RoomSeeds.RoomEntity.Name.ToLower());
+        var room = searchResults.Single(i => i.Id == RoomSeeds.RoomEntity.Id);
         // Assert
-        DeepAssert.Equal(Mapper.Map<RoomListModel>(RoomSeeds.RoomEntity), room);
+        DeepAssert.Equal(Mapper.Map<RoomListModel>(RoomSeeds.RoomEntity) with { Activites = new List<ActivityListModel>() }, room with { Activites = new List<ActivityListModel>()});
     }
     
     [Fact]

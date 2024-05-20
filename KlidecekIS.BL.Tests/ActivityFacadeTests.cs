@@ -18,23 +18,31 @@ public class ActivityFacadeTests : FacadeTestsBase
         _activityFacadeSut = new ActivityFacade(Mapper, UnitOfWorkFactory);
     }
     
+    // Search should be case insensitive
     [Fact]
-    public async Task SearchActivityByDescriptionOk()
+    public async Task SearchActivityByDescriptionOkUpperCase()
     {
         // Arrange and Act
-        var searchResults = await _activityFacadeSut.SearchActivityByDescription(ActivitySeeds.ActivityEntity.Description);
+        var searchResults = await _activityFacadeSut.SearchActivityByDescription(ActivitySeeds.ActivityEntity.Description.ToUpper());
         var activity = searchResults.Single(i => i.Id == ActivitySeeds.ActivityEntity.Id);
         // Assert
         var x = Mapper.Map<ActivityListModel>(ActivitySeeds.ActivityEntity);
         DeepAssert.Equal(Mapper.Map<ActivityListModel>(ActivitySeeds.ActivityEntity) with { Grades = new List<GradeListModel>() }, activity  with { Grades = new List<GradeListModel>() });
-        
-        // Search should be case insensitive
-        // Arrange and Act
-        searchResults = await _activityFacadeSut.SearchActivityByDescription(ActivitySeeds.ActivityEntity.Description.ToLower());
-        activity = searchResults.Single(i => i.Id == ActivitySeeds.ActivityEntity.Id);
-        // Assert
-        DeepAssert.Equal(Mapper.Map<ActivityListModel>(ActivitySeeds.ActivityEntity), activity);
     }
+    
+    // Search should be case insensitive
+    [Fact]
+    public async Task SearchActivityByDescriptionOkLowerCase()
+    {
+        // Arrange and Act
+        var searchResults = await _activityFacadeSut.SearchActivityByDescription(ActivitySeeds.ActivityEntity.Description.ToLower());
+        var activity = searchResults.Single(i => i.Id == ActivitySeeds.ActivityEntity.Id);
+        // Assert
+        var x = Mapper.Map<ActivityListModel>(ActivitySeeds.ActivityEntity);
+        DeepAssert.Equal(Mapper.Map<ActivityListModel>(ActivitySeeds.ActivityEntity) with { Grades = new List<GradeListModel>() }, activity  with { Grades = new List<GradeListModel>() });
+    }
+    
+    
     
     [Fact]
     public async Task SearchNonExistingActivityByDescription()

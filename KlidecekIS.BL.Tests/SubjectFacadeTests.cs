@@ -20,19 +20,24 @@ public class SubjectFacadeTests : FacadeTestsBase
         _subjectFacadeSut = new SubjectFacade(Mapper, UnitOfWorkFactory);
     }
 
+    // Search should be case insensitive
     [Fact]
-    public async Task SearchSubjectByNameOk()
+    public async Task SearchSubjectByNameOkUpperCase()
     {
         // Arrange and Act
-        var searchResults = await _subjectFacadeSut.SearchSubjectByName(SubjectSeeds.SubjectEntity.Name);
+        var searchResults = await _subjectFacadeSut.SearchSubjectByName(SubjectSeeds.SubjectEntity.Name.ToUpper());
         var subject = searchResults.Single(i => i.Id == SubjectSeeds.SubjectEntity.Id);
         // Assert
         DeepAssert.Equal(SubjectSeeds.SubjectEntity, Mapper.Map<SubjectEntity>(subject) with {Activities = new List<ActivityEntity>()});
-        
-        // Search should be case insensitive
+    }
+    
+    // Search should be case insensitive
+    [Fact]
+    public async Task SearchSubjectByNameOkLowerCase()
+    {
         // Arrange and Act
-        searchResults = await _subjectFacadeSut.SearchSubjectByName(SubjectSeeds.SubjectEntity.Name.ToLower());
-        subject = searchResults.Single(i => i.Id == SubjectSeeds.SubjectEntity.Id);
+        var searchResults = await _subjectFacadeSut.SearchSubjectByName(SubjectSeeds.SubjectEntity.Name.ToLower());
+        var subject = searchResults.Single(i => i.Id == SubjectSeeds.SubjectEntity.Id);
         // Assert
         DeepAssert.Equal(SubjectSeeds.SubjectEntity, Mapper.Map<SubjectEntity>(subject) with {Activities = new List<ActivityEntity>()});
     }

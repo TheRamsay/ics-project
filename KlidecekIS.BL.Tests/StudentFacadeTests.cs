@@ -19,19 +19,24 @@ public class StudentFacadeTests : FacadeTestsBase
         _studentFacadeSut = new StudentFacade(Mapper, UnitOfWorkFactory);
     }
     
+    // Search should be case insensitive
     [Fact]
-    public async Task SearchStudentByNameOk()
+    public async Task SearchStudentByNameOkUpperCase()
     {
         // Arrange and Act
-        var searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name);
+        var searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name.ToUpper());
         var student = searchResults.Single(i => i.Id == StudentSeeds.StudentEntity.Id);
         // Assert
         DeepAssert.Equal(Mapper.Map<StudentListModel>(StudentSeeds.StudentEntity), student with {Grades = new List<GradeListModel>(), Subjects = new List<StudentSubjectListModel>()});
-        
-        // Search should be case insensitive
+    }
+    
+    // Search should be case insensitive
+    [Fact]
+    public async Task SearchStudentByNameOkLowerCase()
+    {
         // Arrange and Act
-        searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name.ToLower());
-        student = searchResults.Single(i => i.Id == StudentSeeds.StudentEntity.Id);
+        var searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name.ToLower());
+        var student = searchResults.Single(i => i.Id == StudentSeeds.StudentEntity.Id);
         // Assert
         DeepAssert.Equal(Mapper.Map<StudentListModel>(StudentSeeds.StudentEntity), student with {Grades = new List<GradeListModel>(), Subjects = new List<StudentSubjectListModel>()});
     }

@@ -19,7 +19,7 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task EnrollStudentToSubjectOk()
+    public async Task EnrollStudentToSubject_StudentEnrolled()
     {
         // Arrange
         var studentId = StudentSeeds.StudentEntity.Id;
@@ -35,7 +35,7 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
     }
     
     [Fact]
-    public async Task EnrollStudentToSubjectInvalidSubject()
+    public async Task EnrollStudentToSubjectInvalidSubject_Throws()
     {
         // Arrange
         var studentId = StudentSeeds.StudentEntity.Id;
@@ -46,7 +46,7 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
     }
     
     [Fact]
-    public async Task EnrollStudentToSubjectInvalidStudent()
+    public async Task EnrollStudentToSubjectInvalidStudent_Throws()
     {
         // Arrange
         var studentId = Guid.NewGuid();
@@ -56,8 +56,8 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
         await Assert.ThrowsAnyAsync<Exception>(() => _studentSubjectFacadeSut.EnrollStudentToSubject(studentId, subjectId));
     }
     
-    [Fact]
-    public async Task EnrollStudentToSubjectTwice()
+    [Fact] // Expected to throw an exception
+    public async Task EnrollStudentToSubjectTwice_Throws()
     {
         // Arrange
         var studentId = StudentSeeds.StudentEntity.Id;
@@ -71,7 +71,7 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
     }
     
     [Fact]
-    public async Task UnEnrollStudentFromSubjectOk()
+    public async Task UnEnrollStudentFromSubject_StudentUnEnrolled()
     {
         // Arrange
         var studentId = StudentSeeds.StudentEntity.Id;
@@ -84,7 +84,7 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
     }
     
     [Fact]
-    public async Task UnEnrollStudentFromSubjectInvalidSubject()
+    public async Task UnEnrollStudentFromSubjectInvalidSubject_Throws()
     {
         // Arrange
         var studentId = StudentSeeds.StudentEntity.Id;
@@ -95,7 +95,7 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
     }
     
     [Fact]
-    public async Task UnEnrollStudentFromSubjectInvalidStudent()
+    public async Task UnEnrollStudentFromSubjectInvalidStudent_Throws()
     {
         // Arrange
         var studentId = Guid.NewGuid();
@@ -106,7 +106,7 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
     }
     
     [Fact]
-    public async Task GetAllStudentSubjectEnrollment()
+    public async Task GetAllStudentSubjectEnrollment_StudentEnrollments()
     {
         // Arrange
         await _studentSubjectFacadeSut.EnrollStudentToSubject( StudentSeeds.StudentEntity.Id, SubjectSeeds.SubjectEntity.Id);

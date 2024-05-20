@@ -20,7 +20,7 @@ public class RoomFacadeTests : FacadeTestsBase
     
     // Search should be case insensitive
     [Fact]
-    public async Task SearchRoomByNameOkUpperCase()
+    public async Task SearchRoomByNameUpperCase_RoomEntity()
     {
         // Arrange and Act
         var searchResults = await _roomFacadeSut.SearchRoomByName(RoomSeeds.RoomEntity.Name.ToUpper());
@@ -31,7 +31,7 @@ public class RoomFacadeTests : FacadeTestsBase
     
     // Search should be case insensitive
     [Fact]
-    public async Task SearchRoomByNameOkLowerCase()
+    public async Task SearchRoomByNameLowerCase_RoomEntity()
     {
         // Arrange and Act
         var searchResults = await _roomFacadeSut.SearchRoomByName(RoomSeeds.RoomEntity.Name.ToLower());
@@ -41,7 +41,7 @@ public class RoomFacadeTests : FacadeTestsBase
     }
     
     [Fact]
-    public async Task SearchNonExistingRoomByName()
+    public async Task SearchNonExistingRoomByName_Empty()
     {
         // Arrange and Act
         var searchResults = await _roomFacadeSut.SearchRoomByName("SubjectSeeds.SubjectEntity.Name");

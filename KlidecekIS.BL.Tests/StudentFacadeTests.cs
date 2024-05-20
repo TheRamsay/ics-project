@@ -21,7 +21,7 @@ public class StudentFacadeTests : FacadeTestsBase
     
     // Search should be case insensitive
     [Fact]
-    public async Task SearchStudentByNameOkUpperCase()
+    public async Task SearchStudentByNameUpperCase_StudentEntity()
     {
         // Arrange and Act
         var searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name.ToUpper());
@@ -32,7 +32,7 @@ public class StudentFacadeTests : FacadeTestsBase
     
     // Search should be case insensitive
     [Fact]
-    public async Task SearchStudentByNameOkLowerCase()
+    public async Task SearchStudentByNameLowerCase_StudentEntity()
     {
         // Arrange and Act
         var searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name.ToLower());
@@ -42,7 +42,7 @@ public class StudentFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task SearchNonExistingStudentByName()
+    public async Task SearchNonExistingStudentByName_Empty()
     {
         // Arrange and Act
         var searchResults = await _studentFacadeSut.SearchStudentByName("SubjectSeeds.SubjectEntity.Name");

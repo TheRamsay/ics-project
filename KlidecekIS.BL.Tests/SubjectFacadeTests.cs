@@ -22,7 +22,7 @@ public class SubjectFacadeTests : FacadeTestsBase
 
     // Search should be case insensitive
     [Fact]
-    public async Task SearchSubjectByNameOkUpperCase()
+    public async Task SearchSubjectByNameUpperCase_SubjectEntity()
     {
         // Arrange and Act
         var searchResults = await _subjectFacadeSut.SearchSubjectByName(SubjectSeeds.SubjectEntity.Name.ToUpper());
@@ -33,7 +33,7 @@ public class SubjectFacadeTests : FacadeTestsBase
     
     // Search should be case insensitive
     [Fact]
-    public async Task SearchSubjectByNameOkLowerCase()
+    public async Task SearchSubjectByNameLowerCase_SubjectEntity()
     {
         // Arrange and Act
         var searchResults = await _subjectFacadeSut.SearchSubjectByName(SubjectSeeds.SubjectEntity.Name.ToLower());
@@ -43,7 +43,7 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task SearchNonExistingSubjectByName()
+    public async Task SearchNonExistingSubjectByName_EmptyList()
     {
         // Arrange and Act
         var searchResults = await _subjectFacadeSut.SearchSubjectByName("SubjectSeeds.SubjectEntity.Name");
@@ -53,7 +53,7 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task CreateNewSubjectOk()
+    public async Task CreateNewSubject_SubjectCreated()
     {
         // Arrange
         var newSubject = new SubjectDetailModel()
@@ -73,7 +73,7 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task DeleteExistingSubject()
+    public async Task DeleteExistingSubject_SubjectDeleted()
     {
         // Arrange
         await _subjectFacadeSut.DeleteAsync(SubjectSeeds.SubjectEntity.Id);
@@ -84,14 +84,14 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task DeleteNonExistingSubjectThrow()
+    public async Task DeleteNonExistingSubject_Throws()
     {
         // Arrange, Assert & Act
         await Assert.ThrowsAnyAsync<Exception>(async () => await _subjectFacadeSut.DeleteAsync(Guid.NewGuid()));
     }
 
     [Fact]
-    public async Task UpdateSubject()
+    public async Task UpdateSubject_SubjectUpdated()
     {
         // Arrange
         var subjectModified = new SubjectDetailModel()
@@ -110,7 +110,7 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task GetExistingSubjectById()
+    public async Task GetExistingSubjectById_SubjectEntity()
     {
         // Arrange & Act
         var subject = await _subjectFacadeSut.GetAsync(SubjectSeeds.SubjectEntity.Id);
@@ -121,7 +121,7 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task GetNonExistingSubjectByIdNoThrow()
+    public async Task GetNonExistingSubjectById_DoesNotThrow()
     {
         // Arrange & Act
         var subject = await _subjectFacadeSut.GetAsync(Guid.NewGuid());
@@ -131,7 +131,7 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task GetAllSubjects()
+    public async Task GetAllSubjects_SubjectEntity()
     {
         // Arrange & Act
         var subjects = await _subjectFacadeSut.GetAsync();
@@ -145,23 +145,21 @@ public class SubjectFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task SortShortDescendingTest()
+    public async Task SortSubjectDescending_DescendingList()
     {
         // Arrange & Act
         var searchResults = await _subjectFacadeSut.SortBy(p => p.Short, false);
-
-
+        
         // Assert
         Assert.Equal(SubjectSeeds.SubjectEntity.Short, searchResults.Last().Short);
     }
 
     [Fact]
-    public async Task SortShortAscendingTest()
+    public async Task SortShortAscendingTest_SortedList()
     {
         // Arrange & Act
         var searchResults = await _subjectFacadeSut.SortBy(p => p.Short, true);
-
-
+        
         // Assert
         Assert.Equal(SubjectSeeds.SubjectEntity.Short, searchResults.First().Short);
     }

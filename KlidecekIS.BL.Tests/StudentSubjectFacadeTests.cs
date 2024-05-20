@@ -56,8 +56,8 @@ public class StudentSubjectFacadeTests : FacadeTestsBase
         await Assert.ThrowsAnyAsync<Exception>(() => _studentSubjectFacadeSut.EnrollStudentToSubject(studentId, subjectId));
     }
     
-    [Fact]
-    public async Task EnrollStudentToSubjectTwice()
+    [Fact] // Expected to throw an exception
+    public async Task EnrollStudentToSubjectTwice_Throws()
     {
         // Arrange
         var studentId = StudentSeeds.StudentEntity.Id;

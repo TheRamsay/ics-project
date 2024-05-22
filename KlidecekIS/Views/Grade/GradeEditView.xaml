@@ -7,12 +7,10 @@
                        xmlns:views="clr-namespace:KlidecekIS.Views"
                        x:DataType="vm:GradeEditViewModel"
                        x:Class="KlidecekIS.Views.Grade.GradeEditView"
+                       Title="Grade Edit"
                        x:Name="GradeEditViewRoot">
 
-    <StackLayout>
-        <Label Text="Gradeik zmrdik jupi!"></Label>
-
-
+    <StackLayout Spacing="10">
         <Label Text="Score" />
         <Entry Text="{Binding Grade.Score}" />
 
@@ -25,15 +23,23 @@
             ItemDisplayBinding="{Binding Description}"
             SelectedItem="{Binding SelectedActivity}">
         </Picker>
-        <Grid ColumnDefinitions="2*,3*" ColumnSpacing="10">
+        <Grid ColumnDefinitions="*,*, *" ColumnSpacing="10">
 
             <Button Grid.Column="0"
                     Text="Save"
+                    BackgroundColor="LightGreen"
                     Command="{Binding SaveCommand}" />
 
             <Button Grid.Column="1"
                     Text="Cancel"
+                    BackgroundColor="LightYellow"
                     Command="{Binding CancelCommand}" />
+            
+            <Button Grid.Column="2"
+                    Text="Delete"
+                    BackgroundColor="PaleVioletRed"
+                    IsVisible="{Binding Grade, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
+                    Command="{Binding RemoveGradeCommand}" />
         </Grid>
     </StackLayout>
 </views:ContentPageBase>

@@ -81,16 +81,6 @@ public partial class StudentEditViewModel(
     }
     
     [RelayCommand]
-    private async Task RemoveGradeAsync(Guid gradeId)
-    {
-        await gradeFacade.DeleteAsync(gradeId);
-        
-        await ReloadDataAsync();
-        
-        MessengerService.Send(new StudentEditMessage() { StudentId = Student.Id });
-    }
-    
-    [RelayCommand]
     private async Task GoToAddGradeAsync(StudentDetailModel student)
     {
         await navigationService.GoToAsync("//home/students/edit/grade", new Dictionary<string, object?> {

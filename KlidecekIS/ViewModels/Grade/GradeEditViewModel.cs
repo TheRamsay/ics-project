@@ -13,6 +13,7 @@ namespace KlidecekIS.ViewModels;
 public partial class GradeEditViewModel(
     IGradeFacade studentFacade,
     IActivityFacade activityFacade,
+    IGradeFacade gradeFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<GradeEditMessage>
@@ -61,6 +62,18 @@ public partial class GradeEditViewModel(
     [RelayCommand]
     private async Task CancelAsync()
     {
+        navigationService.SendBackButtonPressed();
+    }
+    
+    [RelayCommand]
+    private async Task RemoveGradeAsync()
+    {
+        await gradeFacade.DeleteAsync(Grade.Id);
+        
+        await ReloadDataAsync();
+        
+        MessengerService.Send(new StudentEditMessage() { StudentId = Student.Id });
+        
         navigationService.SendBackButtonPressed();
     }
     

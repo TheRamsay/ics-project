@@ -7,86 +7,216 @@
                        xmlns:views="clr-namespace:KlidecekIS.Views"
                        x:DataType="vm:StudentEditViewModel"
                        x:Class="KlidecekIS.Views.Student.StudentEditView"
+                       Title="Student Edit"
                        x:Name="StudentEditViewRoot">
-
-    <ScrollView Margin="10">
-        <StackLayout>
-           <Label Text="Studentik pepik jupi!"></Label>
-            <Label Text="Name" />
-            <Entry Text="{Binding Student.Name}" />
-            
-            <Label Text="Surname" />
-            <Entry Text="{Binding Student.Surname}" />
-            
-            <Label Text="ImageUrl" />
-            <Entry Text="{Binding Student.ImageUrl}" />
-            <Grid ColumnDefinitions="2*,3*" ColumnSpacing="10">
-
-                <Button Grid.Column="0"
-                        Text="Save"
-                        Command="{Binding SaveCommand}" />
-
-                <Button Grid.Column="1" 
-                        Text="Cancel"
-                        Command="{Binding CancelCommand}" />
-            </Grid> 
-            
-            <Grid>
-                <Label Text="Enrolled subjects:" />
-                <Button 
-                    Text="Enroll subject" 
-                    Command="{Binding GoToEnrollSubjectCommand}" 
-                    CommandParameter="{Binding Student.Id}"
-                    />
-            </Grid>
-            <CollectionView ItemsSource="{Binding Student.Subjects}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="m:StudentSubjectListModel">
-                        <StackLayout>
-                            <Label Text="{Binding Subject.Name}"></Label>
-                            <Label Text="{Binding Subject.Short}"></Label>
-                            <Button 
-                                Text="Remove" 
-                                Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.RemoveSubjectCommand}"
-                                CommandParameter="{Binding Subject.Id}"
-                                />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            
-            <Grid>
-                <Label Text="Your grades:" />
-                <Button 
-                    Text="Add grade" 
-                    Command="{Binding GoToAddGradeCommand}" 
-                    CommandParameter="{Binding Student}"
-                    />
-            </Grid>
-            <CollectionView ItemsSource="{Binding Student.Grades }">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="m:GradeDetailModel">
-                        <StackLayout>
-                            <Label Text="{Binding Score}"></Label>
-                            <Label Text="{Binding Note}"></Label>
-                            <Label Text="{Binding Activity.Start}"></Label>
-                            <Label Text="{Binding Activity.End}"></Label>
-                            <Label Text="{Binding Activity.ActivityType}"></Label>
-                            <Label Text="{Binding Activity.Description}"></Label>
-                            <Button 
-                                Text="Remove" 
-                                Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.RemoveGradeCommand}"
-                                CommandParameter="{Binding Id}"
-                                />
-                            <Button 
-                                Text="Edit" 
-                                Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.EditGradeCommand}"
-                                CommandParameter="{Binding }"
-                                />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+    <!-- -->
+    <!-- <ScrollView Margin="10"> -->
+    <!--     <StackLayout> -->
+    <!--        <Label Text="Studentik pepik jupi!"></Label> -->
+    <!--         <Label Text="Name" /> -->
+    <!--         <Entry Text="{Binding Student.Name}" /> -->
+    <!--          -->
+    <!--         <Label Text="Surname" /> -->
+    <!--         <Entry Text="{Binding Student.Surname}" /> -->
+    <!--          -->
+    <!--         <Label Text="ImageUrl" /> -->
+    <!--         <Entry Text="{Binding Student.ImageUrl}" /> -->
+    <!--         <Grid ColumnDefinitions="2*,3*" ColumnSpacing="10"> -->
+    <!-- -->
+    <!--             <Button Grid.Column="0" -->
+    <!--                     Text="Save" -->
+    <!--                     Command="{Binding SaveCommand}" /> -->
+    <!-- -->
+    <!--             <Button Grid.Column="1"  -->
+    <!--                     Text="Cancel" -->
+    <!--                     Command="{Binding CancelCommand}" /> -->
+    <!--         </Grid>  -->
+    <!--          -->
+    <!--         <Grid> -->
+    <!--             <Label Text="Enrolled subjects:" /> -->
+    <!--             <Button  -->
+    <!--                 Text="Enroll subject"  -->
+    <!--                 Command="{Binding GoToEnrollSubjectCommand}"  -->
+    <!--                 CommandParameter="{Binding Student.Id}" -->
+    <!--                 /> -->
+    <!--         </Grid> -->
+    <!--         <CollectionView ItemsSource="{Binding Student.Subjects}"> -->
+    <!--             <CollectionView.ItemTemplate> -->
+    <!--                 <DataTemplate x:DataType="m:StudentSubjectListModel"> -->
+    <!--                     <StackLayout> -->
+    <!--                         <Label Text="{Binding Subject.Name}"></Label> -->
+    <!--                         <Label Text="{Binding Subject.Short}"></Label> -->
+    <!--                         <Button  -->
+    <!--                             Text="Remove"  -->
+    <!--                             Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.RemoveSubjectCommand}" -->
+    <!--                             CommandParameter="{Binding Subject.Id}" -->
+    <!--                             /> -->
+    <!--                     </StackLayout> -->
+    <!--                 </DataTemplate> -->
+    <!--             </CollectionView.ItemTemplate> -->
+    <!--         </CollectionView> -->
+    <!--          -->
+    <!--         <Grid> -->
+    <!--             <Label Text="Your grades:" /> -->
+    <!--             <Button  -->
+    <!--                 Text="Add grade"  -->
+    <!--                 Command="{Binding GoToAddGradeCommand}"  -->
+    <!--                 CommandParameter="{Binding Student}" -->
+    <!--                 /> -->
+    <!--         </Grid> -->
+    <!--         <CollectionView ItemsSource="{Binding Student.Grades }"> -->
+    <!--             <CollectionView.ItemTemplate> -->
+    <!--                 <DataTemplate x:DataType="m:GradeDetailModel"> -->
+    <!--                     <StackLayout> -->
+    <!--                         <Label Text="{Binding Score}"></Label> -->
+    <!--                         <Label Text="{Binding Note}"></Label> -->
+    <!--                         <Label Text="{Binding Activity.Start}"></Label> -->
+    <!--                         <Label Text="{Binding Activity.End}"></Label> -->
+    <!--                         <Label Text="{Binding Activity.ActivityType}"></Label> -->
+    <!--                         <Label Text="{Binding Activity.Description}"></Label> -->
+    <!--                         <Button  -->
+    <!--                             Text="Remove"  -->
+    <!--                             Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.RemoveGradeCommand}" -->
+    <!--                             CommandParameter="{Binding Id}" -->
+    <!--                             /> -->
+    <!--                         <Button  -->
+    <!--                             Text="Edit"  -->
+    <!--                             Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.EditGradeCommand}" -->
+    <!--                             CommandParameter="{Binding }" -->
+    <!--                             /> -->
+    <!--                     </StackLayout> -->
+    <!--                 </DataTemplate> -->
+    <!--             </CollectionView.ItemTemplate> -->
+    <!--         </CollectionView> -->
+    <!--     </StackLayout> -->
+    <!-- </ScrollView> -->
+    
+    <Grid ColumnDefinitions="*,*" RowDefinitions="auto, *">
+        <Frame Grid.Row="0" Grid.Column="0">
+            <StackLayout>
+                <Label Text="Name" />
+                <Entry Text="{Binding Student.Name}" />
+        
+                <Label Text="Surname" />
+                <Entry Text="{Binding Student.Surname}" />
+        
+                <Label Text="ImageUrl" />
+                <Entry Text="{Binding Student.ImageUrl}" />
+            </StackLayout>
+        </Frame>
+        
+        <StackLayout Spacing="20" Grid.Column="1" Grid.Row="0" Width="66">
+            <Button Text="Save" Command="{Binding SaveCommand}" BackgroundColor="LightGreen" />
+            <Button Text="Cancel" Command="{Binding CancelCommand}"  BackgroundColor="PaleVioletRed" />
         </StackLayout>
-    </ScrollView>
+        
+        <Frame Grid.Column="0" Grid.Row="1">
+            <StackLayout Spacing="10">
+                <Grid ColumnDefinitions="*,*">
+                    <Label 
+                        Text="Enrolled subjects" 
+                        FontSize="22" 
+                        Grid.Column="0"
+                        TextColor="MediumPurple" />
+                    <Button
+                        Text="Enroll subject"
+                        Grid.Column="1"
+                        Command="{Binding GoToEnrollSubjectCommand}"
+                        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter }}"
+                        CommandParameter="{Binding Student.Id}"
+                        />
+                </Grid>
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding Student.Subjects}">
+                        <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="m:StudentSubjectListModel">
+                                    <Frame BackgroundColor="WhiteSmoke" Padding="10" Margin="15">
+                                        <Grid ColumnDefinitions="*,*,*">
+                                            <Label 
+                                                Text="{Binding Subject.Short}" 
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                TextColor="MediumPurple" 
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"/>
+                                            <Label 
+                                                Text="{Binding Subject.Name}" 
+                                                Grid.Column="1"
+                                                TextColor="Black"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                />
+                                            <Button
+                                                Text="Remove"
+                                                Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.RemoveSubjectCommand}"
+                                                CommandParameter="{Binding Subject.Id}"
+                                                Grid.Column="2"
+                                                BackgroundColor="PaleVioletRed"
+                                            />
+                                        </Grid>
+                                    </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+        
+        <Frame Grid.Column="1" Grid.Row="1">
+            <StackLayout Spacing="10">
+                <Grid ColumnDefinitions="*,*">
+                    <Label Text="Grades" FontSize="22" TextColor="MediumPurple" Grid.Column="0"/>
+                    <Button
+                        Text="Add grade"
+                        Command="{Binding GoToAddGradeCommand}"
+                        CommandParameter="{Binding Student}"
+                        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter }}"
+                        Grid.Column="1"
+                        />
+                </Grid>
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding Student.Grades}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="m:GradeDetailModel">
+                                <Frame>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={x:Reference StudentEditViewRoot}, Path=BindingContext.EditGradeCommand}"
+                                            CommandParameter="{Binding }" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid ColumnDefinitions="*,*,*, *" RowDefinitions="*, *">
+                                        <Label 
+                                            Grid.RowSpan="2" 
+                                            Grid.Column="0" 
+                                            Text="{Binding Score}" 
+                                            TextColor="MediumPurple" 
+                                            FontAttributes="Bold" 
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            FontSize="18" />
+                                        <Label 
+                                            Grid.Column="1" 
+                                            Text="{Binding Activity.ActivityType}" 
+                                            VerticalOptions="Center" 
+                                            HorizontalOptions="Center" />
+                                        <StackLayout Grid.Column="2">
+                                            <Label Text="{Binding Note}" FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding Activity.Description}"></Label>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="3">
+                                            <Label Text="{Binding Activity.Start}"  />
+                                            <Label Text="{Binding Activity.End}" />
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+    </Grid>
 </views:ContentPageBase>

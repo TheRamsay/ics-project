@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 namespace KlidecekIS.Common.Tests;
 
 public class KlidecekTestingDbContext(DbContextOptions contextOptions, bool seedTestingData = false) 
-    : KlidecekDbContext(contextOptions, seedTestingData)
+    : KlidecekDbContext(contextOptions, seedDemoData: false)
 {
-    private bool _loaded = false;
+    private bool _loaded;
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

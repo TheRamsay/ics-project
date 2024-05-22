@@ -10,7 +10,7 @@
                        x:Name="StudentListViewRoot"
                        Title="Student list">
 
-    <StackLayout>
+    <StackLayout Spacing="10">
         <SearchBar Placeholder="Search students by name or surname..."
                    Text="{Binding SearchText, Mode=TwoWay}"
                    SearchCommand="{Binding SearchStudentsCommand}" /> 
@@ -20,47 +20,47 @@
                     Command="{Binding SortByNameCommand}" />
             <Button Text="Sort by Surname" Grid.Column="1"
                     Command="{Binding SortBySurnameCommand}" />
-            <Button Text="Add new student" Grid.Column="2"
+            <Button Text="Add new student" Grid.Column="2" BackgroundColor="PaleVioletRed"
                     Command="{Binding AddNewStudentCommand }" />
         </Grid>
         <Grid ColumnDefinitions="*"
               RowDefinitions="auto" RowSpacing="10">
 
-            <CollectionView ItemsSource="{Binding Students}"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            EmptyView="No students to display">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                     VerticalItemSpacing="5" />
-                </CollectionView.ItemsLayout>
+            <ScrollView>
+                <CollectionView ItemsSource="{Binding Students}"
+                                EmptyView="No students to display">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="m:StudentListModel">
-                        <Frame Padding="10"
-                               IsClippedToBounds="True"
-                               HeightRequest="100">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="m:StudentListModel">
+                            <Frame Padding="10"
+                                   IsClippedToBounds="True"
+                                   HeightRequest="100">
 
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={x:Reference StudentListViewRoot}, Path=BindingContext.GoToDetailCommand}"
-                                    CommandParameter="{Binding Id}" />
-                            </Frame.GestureRecognizers>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={x:Reference StudentListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                        CommandParameter="{Binding Id}" />
+                                </Frame.GestureRecognizers>
 
-                            <Grid ColumnDefinitions="auto,*,150" ColumnSpacing="10"
-                                  RowDefinitions="*,*">
-                                <Image Grid.Column="0" Grid.Row="0"
-                                       Grid.RowSpan="2"
-                                       Source="{Binding ImageUrl}" />
-                                <Label Grid.Column="1" Grid.Row="0"
-                                       Text="{Binding Name}" />
-                                <Label Grid.Column="2" Grid.Row="0"
-                                       Text="{Binding Surname}" />
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <Grid ColumnDefinitions="auto,*,150" ColumnSpacing="10"
+                                      RowDefinitions="*,*">
+                                    <Image Grid.Column="0" Grid.Row="0"
+                                           Grid.RowSpan="2"
+                                           Source="{Binding ImageUrl}" />
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding Name}" />
+                                    <Label Grid.Column="2" Grid.Row="0"
+                                           Text="{Binding Surname}" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
         </Grid>
         
     </StackLayout>

@@ -5,7 +5,7 @@ namespace KlidecekIS.DAL;
 
 using Microsoft.EntityFrameworkCore;
 
-public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoData = true) : DbContext(contextOptions)
+public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoData) : DbContext(contextOptions)
 {
     public DbSet<ActivityEntity> ActivityEntities => Set<ActivityEntity>();
     public DbSet<GradeEntity> Grades => Set<GradeEntity>();
@@ -56,7 +56,7 @@ public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoDat
             .HasForeignKey(i => i.RoomId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        if (true)
+        if (seedDemoData)
         {
             ActivitySeeds.Seed(modelBuilder);
             StudentSeeds.Seed(modelBuilder);

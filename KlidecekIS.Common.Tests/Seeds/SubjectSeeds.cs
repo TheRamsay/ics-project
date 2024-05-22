@@ -14,21 +14,21 @@ public static class SubjectSeeds
     
     public static readonly SubjectEntity SubjectEntity = new SubjectEntity()
     {
-        Id = Guid.Parse("57cea729-7930-43e7-b280-831c03bc2e06"),
+        Id = Guid.Parse("57cea729-7110-43e7-b280-831c03bc2e06"),
         Name = "Signaly a Systemy",
         Short = "ISS"
     };
     
     public static readonly SubjectEntity SubjectEntityUpdate = SubjectEntity with
     {
-        Id = Guid.Parse("57cea729-1960-43e7-b280-831a03bc2e06"),
+        Id = Guid.Parse("57cea729-1960-43e7-b280-831a03bb2e06"),
         Activities = new List<ActivityEntity>(),
         Students = new List<StudentSubjectEntity>()
     };
     
     public static readonly SubjectEntity SubjectEntityDelete = SubjectEntity with
     {
-        Id = Guid.Parse("57cea729-7960-23e7-b280-831c02bc2e06"),
+        Id = Guid.Parse("57cea729-7960-23e7-a280-831c02bc2e06"),
         Activities = new List<ActivityEntity>(),
         Students = new List<StudentSubjectEntity>()
     };

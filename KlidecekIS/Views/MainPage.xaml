@@ -7,10 +7,9 @@
                        x:DataType="vm:MainPageViewModel"
                        x:Name="MainPageRoot">
     <ContentPage.Content>
-        <StackLayout Spacing="20">
-            <Button Text="Mlem student" Command="{Binding GoToStudentsCommand}" />
-            <Button Text="Mlem predmet" Command="{Binding GoToSubjectsCommand}" />
-            <Button Text="Mlem znamka" Command="{Binding GoToGradesCommand}" />
+        <StackLayout Spacing="20" Width="80" VerticalOptions="Center" HorizontalOptions="Center">
+            <Button Text="List of students" Command="{Binding GoToStudentsCommand}" />
+            <Button Text="List of subjects" Command="{Binding GoToSubjectsCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </views:ContentPageBase>

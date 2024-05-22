@@ -35,7 +35,7 @@ public static class ActivitySeeds
     
     public static readonly ActivityEntity ActivityEntityUpdate = ActivityEntity with
     {
-        Id = Guid.Parse("0fa2ca61-1a7a-43a7-8e85-98f0970b5d4a"),
+        Id = Guid.Parse("0fa2ca61-1a7a-43a7-8e85-98f2970b5d4a"),
         Grades = new List<GradeEntity>(),
         Room = null!,
         Subject = null!,
@@ -45,7 +45,7 @@ public static class ActivitySeeds
     
     public static readonly ActivityEntity ActivityEntityDelete = ActivityEntity with
     {
-        Id = Guid.Parse("0fa1e661-1a7a-43a7-1a85-18f0970b5d4a"),
+        Id = Guid.Parse("0fa1e661-1a7c-43a7-1a85-18f0970b5d4a"),
         Grades = new List<GradeEntity>(),
         Room = null!,
         Subject = null!,

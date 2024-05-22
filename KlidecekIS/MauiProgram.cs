@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AutoMapper;
+using CommunityToolkit.Maui;
 using KlidecekIS.BL;
 using KlidecekIS.BL.Mappers;
 using KlidecekIS.DAL;
@@ -19,6 +20,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .UseSharpnadoMaterialFrame(loggerEnable: false)
             .ConfigureFonts(fonts =>
             {

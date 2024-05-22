@@ -15,7 +15,7 @@ public static class StudentSeeds
     
     public static readonly StudentEntity StudentEntity = new()
     {
-        Id = Guid.Parse("fabde0cd-eefe-443f-baf6-3d96cc2cbf2a"),
+        Id = Guid.Parse("fabce2cd-eefe-443f-baf6-3d96cc2cbf2a"),
         ImageUrl = "https://ibb.co/wCJZCvj",
         Name = "Dominik",
         Surname = "Huml"
@@ -29,7 +29,7 @@ public static class StudentSeeds
     
     public static readonly StudentEntity StudentEntityDelete = StudentEntity with
     {
-        Id = Guid.Parse("facaa0cd-aefe-443f-baf6-3d96cc2cbf2e"),
+        Id = Guid.Parse("facaa0cd-aefe-443f-bba6-3d96cc2cbf2e"),
         Subjects = new List<StudentSubjectEntity>()
     };
     

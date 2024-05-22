@@ -20,7 +20,7 @@
                     Command="{Binding SortByNameCommand}" />
             <Button Text="Sort by Surname" Grid.Column="1"
                     Command="{Binding SortBySurnameCommand}" />
-            <Button Text="Add new student" Grid.Column="2" BackgroundColor="PaleVioletRed"
+            <Button Text="Add new student" Grid.Column="2" BackgroundColor="LightGreen"
                     Command="{Binding AddNewStudentCommand }" />
         </Grid>
         <Grid ColumnDefinitions="*"
@@ -62,6 +62,5 @@
                 </CollectionView>
             </ScrollView>
         </Grid>
-        
     </StackLayout>
 </views:ContentPageBase>

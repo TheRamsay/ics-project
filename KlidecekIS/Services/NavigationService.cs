@@ -1,7 +1,6 @@
 using KlidecekIS.Models;
 using KlidecekIS.Services.Interfaces;
 using KlidecekIS.ViewModels;
-using KlidecekIS.ViewModels.Activity;
 using KlidecekIS.Views.Grade;
 using KlidecekIS.Views.Room;
 using KlidecekIS.Views.Student;

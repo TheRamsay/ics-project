@@ -45,6 +45,7 @@
                     Command="{Binding CancelCommand}" />
             <Button Grid.Column="2"
                     Text="Delete"
+                    IsVisible="{Binding Activity, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter }}"
                     Command="{Binding DeleteCommand}"/>
         </Grid>
 

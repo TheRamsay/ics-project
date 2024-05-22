@@ -32,27 +32,30 @@
                 Text="Create activity"
                 Command="{Binding GoToCreateActivityCommand}"
                 CommandParameter="{Binding Subject.Id}"
+                IsVisible="{Binding Subject, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter }}"
             />
         </Grid>
         <Label Text="Enrolled activities:"  FontSize="20" TextColor="MediumPurple"/>
-        <CollectionView ItemsSource="{Binding Subject.Activities}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:ActivityDetailModel">
-                    <Frame>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                Command="{Binding BindingContext.GoToEditActivityCommand, Source={x:Reference SubjectEditViewRoot}}" 
-                                CommandParameter="{Binding }"/>
-                        </Frame.GestureRecognizers>
-                        <StackLayout Spacing="10">
-                            <Label Text="{Binding ActivityType}"></Label>
-                            <Label Text="{Binding Description}"></Label>
-                            <Label Text="{Binding Start}"></Label>
-                            <Label Text="{Binding End}"></Label>
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Subject.Activities}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:ActivityDetailModel">
+                        <Frame>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding BindingContext.GoToEditActivityCommand, Source={x:Reference SubjectEditViewRoot}}" 
+                                    CommandParameter="{Binding }"/>
+                            </Frame.GestureRecognizers>
+                            <StackLayout Spacing="10">
+                                <Label Text="{Binding ActivityType}"></Label>
+                                <Label Text="{Binding Description}"></Label>
+                                <Label Text="{Binding Start}"></Label>
+                                <Label Text="{Binding End}"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
     </StackLayout>
 </views:ContentPageBase>

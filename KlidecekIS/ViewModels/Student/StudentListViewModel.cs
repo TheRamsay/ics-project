@@ -16,8 +16,8 @@ public partial class StudentListViewModel(
 {
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
 
-    private bool NameSortAscending = true;
-    private bool SurnameSortAscending = true;
+    private bool _nameSortAscending = true;
+    private bool _surnameSortAscending = true;
 
     public string SearchText { get; set; } = string.Empty;
 
@@ -50,15 +50,15 @@ public partial class StudentListViewModel(
     [RelayCommand]
     private async Task SortByName()
     {
-        Students = await studentFacade.SortBy(student => student.Name, NameSortAscending);
-        NameSortAscending = !NameSortAscending;
+        Students = await studentFacade.SortBy(student => student.Name, _nameSortAscending);
+        _nameSortAscending = !_nameSortAscending;
     }
 
     [RelayCommand]
     private async Task SortBySurname()
     {
-        Students = await studentFacade.SortBy(student => student.Surname, SurnameSortAscending);
-        SurnameSortAscending = !SurnameSortAscending;
+        Students = await studentFacade.SortBy(student => student.Surname, _surnameSortAscending);
+        _surnameSortAscending = !_surnameSortAscending;
     }
 
     public async void Receive(StudentEditMessage message)

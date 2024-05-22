@@ -13,7 +13,6 @@ namespace KlidecekIS.ViewModels;
 public partial class StudentEditViewModel(
     IStudentFacade studentFacade,
     IStudentSubjectFacade studentSubjectFacade,
-    IGradeFacade gradeFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<StudentEditMessage>, IRecipient<GradeEditMessage>

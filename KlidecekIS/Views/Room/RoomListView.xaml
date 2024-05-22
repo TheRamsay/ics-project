@@ -16,43 +16,45 @@
             <Button Text="Sort by Name" Grid.Column="0"
                     Command="{Binding SortByNameCommand}" />
 
-            <Button Text="Add new room" Grid.Column="2" BackgroundColor="HotPink"
+            <Button Text="Add new room" Grid.Column="2" BackgroundColor="LightGreen"
                     Command="{Binding AddNewRoomCommand }" />
         </Grid>
 
         <Grid ColumnDefinitions="*"
               RowDefinitions="auto" RowSpacing="10">
 
-            <CollectionView ItemsSource="{Binding Rooms}"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            EmptyView="Nothing to display 😭">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                     VerticalItemSpacing="5" />
-                </CollectionView.ItemsLayout>
+            <ScrollView>
+                <CollectionView ItemsSource="{Binding Rooms}"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                EmptyView="Nothing to display 😭">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="m:RoomListModel">
-                        <Frame Padding="10"
-                               IsClippedToBounds="True"
-                               HeightRequest="100">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="m:RoomListModel">
+                            <Frame Padding="10"
+                                   IsClippedToBounds="True"
+                                   HeightRequest="100">
 
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={x:Reference RoomListViewRoot}, Path=BindingContext.GoToDetailCommand}"
-                                    CommandParameter="{Binding Id}" />
-                            </Frame.GestureRecognizers>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={x:Reference RoomListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                        CommandParameter="{Binding Id}" />
+                                </Frame.GestureRecognizers>
 
-                            <Grid ColumnDefinitions="auto,*,150" ColumnSpacing="10"
-                                  RowDefinitions="*,*">
-                                <Label Grid.Column="1" Grid.Row="0"
-                                       Text="{Binding Name}" />
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <Grid ColumnDefinitions="auto,*,150" ColumnSpacing="10"
+                                      RowDefinitions="*,*">
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding Name}" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
         </Grid>
     </StackLayout>
 </views:ContentPageBase>

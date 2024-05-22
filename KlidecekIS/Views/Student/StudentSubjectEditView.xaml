@@ -6,24 +6,25 @@
                        xmlns:views="clr-namespace:KlidecekIS.Views"
                        x:DataType="vm:StudentSubjectEditViewModel"
                        x:Class="KlidecekIS.Views.Student.StudentSubjectEditView"
+                       Title="Enroll subjects"
                        x:Name="StudentSubjetEditViewRoot">
 
     <StackLayout>
-        <Label Text="Enrol a subject"></Label>
-        <CollectionView ItemsSource="{Binding Subjects}" EmptyView="Nothing to enroll">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:SubjectListModel">
-                    <StackLayout>
-                        <Label Text="{Binding Name}"></Label>
-                        <Label Text="{Binding Short}"></Label>
-                        <Button 
-                            Text="Enroll" 
-                            Command="{Binding Source={x:Reference StudentSubjetEditViewRoot}, Path=BindingContext.EnrollSubjectCommand}"
-                            CommandParameter="{Binding Id}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Subjects}" EmptyView="Nothing to enroll">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:SubjectListModel">
+                        <StackLayout>
+                            <Label Text="{Binding Name}"></Label>
+                            <Label Text="{Binding Short}"></Label>
+                            <Button 
+                                Text="Enroll" 
+                                Command="{Binding Source={x:Reference StudentSubjetEditViewRoot}, Path=BindingContext.EnrollSubjectCommand}"
+                                CommandParameter="{Binding Id}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
     </StackLayout>
 </views:ContentPageBase>

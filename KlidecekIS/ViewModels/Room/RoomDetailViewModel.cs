@@ -5,7 +5,7 @@ using KlidecekIS.BL.Models;
 using KlidecekIS.Messages;
 using KlidecekIS.Services.Interfaces;
 
-namespace KlidecekIS.ViewModels.Room;
+namespace KlidecekIS.ViewModels;
 
 [QueryProperty("Id", "Id")]
 public partial class RoomDetailViewModel(
@@ -17,16 +17,18 @@ public partial class RoomDetailViewModel(
     public Guid Id { get; set; }
     public RoomDetailModel? Room { get; set; }
 
-    public void Receive(RoomDeleteMessage message)
+    public async void Receive(RoomDeleteMessage message)
     {
-        throw new NotImplementedException();
+        await LoadDataAsync();
     }
 
     public async void Receive(RoomEditMessage message)
     {
-        // TODO:
+        if (message.RoomId == Id)
+        {
+            await LoadDataAsync();
+        }
 
-        await LoadDataAsync();
     }
 
     protected override async Task LoadDataAsync()

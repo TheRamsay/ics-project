@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:vm="clr-namespace:KlidecekIS.ViewModels"
+                       xmlns:m="clr-namespace:KlidecekIS.BL.Models;assembly=KlidecekIS.BL"
+                       xmlns:views="clr-namespace:KlidecekIS.Views"
+                       x:DataType="vm:RoomDetailViewModel"
+                       x:Class="KlidecekIS.Views.Room.RoomDetailView"
+                          Title="Room Detail"
+                       x:Name="RoomDetailViewRoot">
+
+    <StackLayout Spacing="10">
+        <Label Text="{Binding Room.Name, FallbackValue='D105'}" ></Label>
+        <Button Text="Delete" Command="{Binding DeleteCommand}" ></Button>
+        <Button Text="Edit" Command="{Binding GoToEditCommand}" ></Button>
+    </StackLayout>
+</views:ContentPageBase>

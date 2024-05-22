@@ -3,6 +3,7 @@ using KlidecekIS.Services.Interfaces;
 using KlidecekIS.ViewModels;
 using KlidecekIS.ViewModels.Activity;
 using KlidecekIS.Views.Grade;
+using KlidecekIS.Views.Room;
 using KlidecekIS.Views.Student;
 using KlidecekIS.Views.Subject;
 
@@ -24,6 +25,10 @@ public class NavigationService: INavigationService
         new("//home/subject/edit/enroll", typeof(SubjectActivityEditView), typeof(SubjectActivityEditViewModel)),
 
         new("//home/grade/edit", typeof(GradeEditView), typeof(GradeEditViewModel)),
+
+        new("//home/room", typeof(RoomListView), typeof(RoomListViewModel)),
+        new("//home/room/detail", typeof(RoomDetailView), typeof(RoomDetailViewModel)),
+        new("//home/room/edit", typeof(RoomEditView), typeof(RoomEditViewModel)),
 
     };
     

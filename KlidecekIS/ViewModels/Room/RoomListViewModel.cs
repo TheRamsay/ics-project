@@ -5,7 +5,7 @@ using KlidecekIS.BL.Models;
 using KlidecekIS.Messages;
 using KlidecekIS.Services.Interfaces;
 
-namespace KlidecekIS.ViewModels.Room;
+namespace KlidecekIS.ViewModels;
 
 public partial class RoomListViewModel(
     IRoomFacade roomFacade,
@@ -14,6 +14,8 @@ public partial class RoomListViewModel(
     IRecipient<RoomDeleteMessage>
 {
     public IEnumerable<RoomListModel> Rooms { get; set; } = null!;
+
+    private bool NameSortAscending = true;
 
     protected override async Task LoadDataAsync()
     {
@@ -32,6 +34,13 @@ public partial class RoomListViewModel(
         await navigationService.GoToAsync("/edit");
     }
 
+    [RelayCommand]
+    private async Task SortByName()
+    {
+        Rooms = await roomFacade.SortBy(room => room.Name, NameSortAscending);
+        NameSortAscending = !NameSortAscending;
+    }
+
     public async void Receive(RoomEditMessage message)
     {
         await LoadDataAsync();
@@ -40,5 +49,11 @@ public partial class RoomListViewModel(
     public async void Receive(RoomDeleteMessage message)
     {
         await LoadDataAsync();
+    }
+    
+    [RelayCommand]
+    private async Task AddNewRoom()
+    {
+        await navigationService.GoToAsync("/edit");
     }
 }

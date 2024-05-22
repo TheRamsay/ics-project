@@ -34,6 +34,10 @@ public partial class SubjectListViewModel(
         => await navigationService.GoToAsync<SubjectDetailViewModel>(
             new Dictionary<string, object?>() { [nameof(SubjectDetailViewModel.Id)] = id });
 
+    private async Task GoToCreateAsync()
+    {
+        await navigationService.GoToAsync("/edit");
+    }
 
     [RelayCommand]
     private async Task AddNewActivity()

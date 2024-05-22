@@ -6,10 +6,13 @@
                        x:Class="KlidecekIS.Views.MainPage"
                        x:DataType="vm:MainPageViewModel"
                        x:Name="MainPageRoot">
+
+    
     <ContentPage.Content>
         <StackLayout Spacing="20" Width="80" VerticalOptions="Center" HorizontalOptions="Center">
             <Button Text="List of students" Command="{Binding GoToStudentsCommand}" />
             <Button Text="List of subjects" Command="{Binding GoToSubjectsCommand}" />
+            <Button Text="List of rooms" Command="{Binding GoToRoomsCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </views:ContentPageBase>

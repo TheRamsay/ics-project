@@ -4,7 +4,7 @@ using KlidecekIS.BL.Models;
 using KlidecekIS.Messages;
 using KlidecekIS.Services.Interfaces;
 
-namespace KlidecekIS.ViewModels.Room;
+namespace KlidecekIS.ViewModels;
 
 [QueryProperty("Room", "Room")]
 public partial class RoomEditViewModel(
@@ -19,8 +19,14 @@ public partial class RoomEditViewModel(
     {
         await roomFacade.SaveAsync(Room);
 
-        MessengerService.Send(new RoomEditMessage());
+        MessengerService.Send(new RoomEditMessage(){ RoomId = Room.Id });
 
+        navigationService.SendBackButtonPressed();
+    }
+    
+    [RelayCommand]
+    private async Task CancelAsync()
+    {
         navigationService.SendBackButtonPressed();
     }
 
@@ -28,4 +34,5 @@ public partial class RoomEditViewModel(
     {
         Room = await roomFacade.GetAsync(Room.Id) ?? RoomDetailModel.Empty;
     }
+    
 }

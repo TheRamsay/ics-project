@@ -17,6 +17,8 @@ public partial class MainPageViewModel (
     public async Task GoToSubjectsAsync()
         => await navigationService.GoToAsync<SubjectListViewModel>();
 
-
+    [RelayCommand]
+    public async Task GoToRoomsAsync()
+        => await navigationService.GoToAsync<RoomListViewModel>();
 }
 

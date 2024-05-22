@@ -1,6 +1,6 @@
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using KlidecekIS.BL.Facades;
 using KlidecekIS.BL.Facades.Interfaces;
 using KlidecekIS.BL.Models;
 using KlidecekIS.Messages;
@@ -10,28 +10,23 @@ namespace KlidecekIS.ViewModels;
 
 [QueryProperty("Subject", "Subject")]
 public partial class SubjectEditViewModel(
-    ISubjectFacade studentFacade,
+    ISubjectFacade subjectFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
-    : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>
+    : ViewModelBase(messengerService)
 {
     public SubjectDetailModel Subject { get; set; } = SubjectDetailModel.Empty;
 
     [RelayCommand]
     private async Task SaveAsync()
     {
-        await studentFacade.SaveAsync(Subject with { Activities= default!, Students = default! });
+        await subjectFacade.SaveAsync(Subject with { Activities= default!, Students = default! });
 
-        MessengerService.Send(new SubjectEditMessage(){ SubjectId = Subject.Id });
+        MessengerService.Send(new SubjectEditMessage { SubjectId = Subject.Id });
 
         navigationService.SendBackButtonPressed();
     }
-
-    public async void Receive(SubjectEditMessage message)
-    {
-        await ReloadDataAsync();
-    }
-
+    
     [RelayCommand]
     private async Task CancelAsync()
     {
@@ -40,7 +35,26 @@ public partial class SubjectEditViewModel(
 
     private async Task ReloadDataAsync()
     {
-        Subject = await studentFacade.GetAsync(Subject.Id)
+        Subject = await subjectFacade.GetAsync(Subject.Id)
                   ?? SubjectDetailModel.Empty;
+
+    }
+
+    [RelayCommand]
+    private async Task GoToCreateActivity(Guid subjectId)
+    {
+        await navigationService.GoToAsync<SubjectActivityEditViewModel>(
+            new Dictionary<string, object?>() { [nameof(SubjectActivityEditViewModel.Subject)] = Subject });
+    }
+    
+    [RelayCommand]
+    private async Task GoToEditActivity(ActivityDetailModel activity)
+    {
+        await navigationService.GoToAsync<SubjectActivityEditViewModel>(
+            new Dictionary<string, object?>()
+            {
+                [nameof(SubjectActivityEditViewModel.Subject)] = Subject,
+                [nameof(SubjectActivityEditViewModel.Activity)] = activity
+            });
     }
 }

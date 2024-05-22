@@ -7,10 +7,10 @@
                        xmlns:views="clr-namespace:KlidecekIS.Views"
                        x:DataType="vm:SubjectEditViewModel"
                        x:Class="KlidecekIS.Views.Subject.SubjectEditView"
+                       Title="Edit subject"
                        x:Name="SubjectEditViewRoot">
 
-    <StackLayout>
-        <Label Text="Subjectik  jupi!"></Label>
+    <StackLayout Spacing="20">
         <Label Text="Name" />
         <Entry Text="{Binding Subject.Name}" />
 
@@ -23,9 +23,36 @@
                     Text="Save"
                     Command="{Binding SaveCommand}" />
 
-            <!-- <Button Grid.Column="1" -->
-            <!--         Text="Cancel" -->
-            <!--         Command="{Binding CancelCommand}" /> -->
+            <Button Grid.Column="1"
+                    Text="Cancel"
+                    Command="{Binding CancelCommand}" />
         </Grid>
+        <Grid >
+            <Button
+                Text="Create activity"
+                Command="{Binding GoToCreateActivityCommand}"
+                CommandParameter="{Binding Subject.Id}"
+            />
+        </Grid>
+        <Label Text="Enrolled activities:"  FontSize="20" TextColor="MediumPurple"/>
+        <CollectionView ItemsSource="{Binding Subject.Activities}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:ActivityDetailModel">
+                    <Frame>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding BindingContext.GoToEditActivityCommand, Source={x:Reference SubjectEditViewRoot}}" 
+                                CommandParameter="{Binding }"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout Spacing="10">
+                            <Label Text="{Binding ActivityType}"></Label>
+                            <Label Text="{Binding Description}"></Label>
+                            <Label Text="{Binding Start}"></Label>
+                            <Label Text="{Binding End}"></Label>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </views:ContentPageBase>

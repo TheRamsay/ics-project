@@ -37,10 +37,16 @@ public partial class SubjectListViewModel(
     }
 
     [RelayCommand]
+<<<<<<< HEAD
+    private async Task AddNewActivity()
+    {
+        await navigationService.GoToAsync("/edit");
+=======
     public async Task SearchSubjects()
     {
         Subjects = await subjectFacade.SearchSubjectByName(SearchText);
         OnPropertyChanged(nameof(Subjects));
+>>>>>>> main
     }
 
     public async void Receive(SubjectEditMessage message)

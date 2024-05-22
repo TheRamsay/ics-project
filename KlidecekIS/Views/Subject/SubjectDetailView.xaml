@@ -6,13 +6,65 @@
                        xmlns:views="clr-namespace:KlidecekIS.Views"
                        x:DataType="vm:SubjectDetailViewModel"
                        x:Class="KlidecekIS.Views.Subject.SubjectDetailView"
+                       Title="Subject Detail"
                        x:Name="SubjectDetailViewRoot">
 
 
-    <StackLayout Spacing="10">
-        <Label Text="Detail předmětu!"></Label>
-        <Label Text="{Binding Subject.Name, FallbackValue='Pepa'}" ></Label>
-        <Button Text="Delete" Command="{Binding DeleteCommand}" ></Button>
-        <Button Text="Edit" Command="{Binding GoToEditCommand}" ></Button>
-    </StackLayout>
+    <Grid ColumnDefinitions="*,*" RowDefinitions="auto, *">
+        <Frame Grid.Row="0" Grid.Column="0">
+            <Grid ColumnDefinitions="*, *">
+                <Label Grid.Column="0" Text="{Binding Subject.Short}" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="{Binding Subject.Name}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </Grid>
+        </Frame>
+        
+        <StackLayout Spacing="20" Grid.Column="1" Grid.Row="0" Width="66">
+            <Button Text="Edit" Command="{Binding GoToEditCommand}" BackgroundColor="LightGreen" />
+            <Button Text="Delete" Command="{Binding DeleteCommand}"  BackgroundColor="PaleVioletRed" />
+        </StackLayout>
+        
+        <Frame Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+            <StackLayout Spacing="10">
+                <Label Text="Activities" FontSize="22" TextColor="MediumPurple" />
+                <Grid ColumnDefinitions="*,*, *" RowDefinitions="*">
+                    <HorizontalStackLayout Grid.Column="0" Grid.Row="0"> 
+                        <Label Text="From"/>
+                        <DatePicker Date="{Binding FilterStartDate}" />
+                        <TimePicker Time="{Binding FilterStartTime}"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Column="1" Grid.Row="0"> 
+                        <Label Text="To"/>
+                        <DatePicker Date="{Binding FilterEndDate}" />
+                        <TimePicker Time="{Binding FilterEndTime}"/>
+                    </HorizontalStackLayout>
+                    <Button 
+                        Text="Filter" 
+                        Grid.Row="0" 
+                        Grid.Column="2" 
+                        BackgroundColor="LightBlue" 
+                        Command="{Binding FilterByDateRangeCommand}"/>
+                </Grid>
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding Activities}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="m:ActivityDetailModel">
+                                <Frame BackgroundColor="WhiteSmoke" Padding="10" Margin="15">
+                                    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Description}" TextColor="Black"></Label>
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding ActivityType}" TextColor="Black"></Label>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Start}" TextColor="Black"></Label>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding End}" TextColor="Black"></Label>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+    </Grid>
+
 </views:ContentPageBase>

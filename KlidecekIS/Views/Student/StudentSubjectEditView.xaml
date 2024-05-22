@@ -9,7 +9,7 @@
                        x:Name="StudentSubjetEditViewRoot">
 
     <StackLayout>
-        <Label Text="MLEM ZAPIS SI PREDMET"></Label>
+        <Label Text="Enrol a subject"></Label>
         <CollectionView ItemsSource="{Binding Subjects}" EmptyView="Nothing to enroll">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:SubjectListModel">

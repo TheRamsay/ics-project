@@ -17,8 +17,6 @@ public partial class MainPageViewModel (
     public async Task GoToSubjectsAsync()
         => await navigationService.GoToAsync<SubjectListViewModel>();
 
-    [RelayCommand]
-    public async Task GoToGradesAsync()
-        => await navigationService.GoToAsync<GradeListViewModel>();
+
 }
 

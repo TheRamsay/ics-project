@@ -106,7 +106,7 @@ public class SubjectFacadeTests : FacadeTestsBase
 
         // Assert
         var subject = await _subjectFacadeSut.GetAsync(subjectModified.Id);
-        DeepAssert.Equal(subjectModified, Mapper.Map<SubjectDetailModel>(subject) with { Activities = new List<ActivityListModel>() });
+        DeepAssert.Equal(subjectModified, Mapper.Map<SubjectDetailModel>(subject) with { Activities = new List<ActivityDetailModel>() });
     }
 
     [Fact]

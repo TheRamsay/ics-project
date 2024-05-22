@@ -34,22 +34,18 @@ public partial class SubjectListViewModel(
         => await navigationService.GoToAsync<SubjectDetailViewModel>(
             new Dictionary<string, object?>() { [nameof(SubjectDetailViewModel.Id)] = id });
 
-    private async Task GoToCreateAsync()
+
+    [RelayCommand]
+    private async Task AddNewActivity()
     {
         await navigationService.GoToAsync("/edit");
     }
 
     [RelayCommand]
-<<<<<<< HEAD
-    private async Task AddNewActivity()
-    {
-        await navigationService.GoToAsync("/edit");
-=======
     public async Task SearchSubjects()
     {
         Subjects = await subjectFacade.SearchSubjectByName(SearchText);
         OnPropertyChanged(nameof(Subjects));
->>>>>>> main
     }
 
     [RelayCommand]

@@ -5,22 +5,21 @@ namespace KlidecekIS.DAL.Seeds;
 
 public static class RoomSeeds
 {
-   public static readonly RoomEntity RoomD = new()
+   public static readonly RoomEntity RoomEntity = new()
    {
-      Id = Guid.Parse("e63123e0-c9bf-4c08-b3f6-06d6d3c7bc15"),
-      Name = "D105",
-      Activites = new List<ActivityEntity>()
+      Id = Guid.Parse("e63183e0-c9bf-4c08-b3f6-06d6d3c7bc15"),
+      Name = "D105"
    };
    
-   public static readonly RoomEntity RoomN = new()
-   {
-      Id = Guid.Parse("a63123e0-c9bf-4c08-b3f6-06d6d3c7bc15"),
-      Name = "N203",
-      Activites = new List<ActivityEntity>()
-   };
+    public static void LoadLists()
+    {
+        RoomEntity.Activites.Add(ActivitySeeds.ActivityEntity);
+    }
 
    public static void Seed(this ModelBuilder modelBuilder)
    {
-      modelBuilder.Entity<RoomEntity>().HasData(RoomN);
+      modelBuilder.Entity<RoomEntity>().HasData(
+         RoomEntity with { Activites = Array.Empty<ActivityEntity>() }
+      );
    }
 }

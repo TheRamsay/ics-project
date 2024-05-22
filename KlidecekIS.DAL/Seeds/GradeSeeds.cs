@@ -5,32 +5,21 @@ namespace KlidecekIS.DAL.Seeds;
 
 public static class GradeSeeds
 {
-    public static readonly GradeEntity GradeISS = new()
+    public static readonly GradeEntity GradeEntity = new()
     {
-        Id = Guid.Parse("895ecdb1-68f7-4144-b91c-166ba803e453"),
-        Note = "ISS znamka ze cviceni",
+        Id = Guid.Parse("895ecda1-68f7-4144-b91c-133ba803e453"),
+        Note = "Dobry vykon.",
         Score = 2.10,
-        Activity = ActivitySeeds.ActivityISS,
-        ActivityId = ActivitySeeds.ActivityISS.Id,
-        StudentId = StudentSeeds.Student.Id,
-        Student = StudentSeeds.Student,
-    };
-    
-    public static readonly GradeEntity GradeIFJ = new()
-    {
-        Id = Guid.Parse("895ecdb1-68f7-1144-b91c-166ba803e453"),
-        Note = "IFJ znamka ze zkousky",
-        Score = 50.5,
-        Activity = ActivitySeeds.ActivityIFJ,
-        ActivityId = ActivitySeeds.ActivityIFJ.Id,
-        StudentId = StudentSeeds.Student.Id,
-        Student = StudentSeeds.Student,
+        Activity = ActivitySeeds.ActivityEntity,
+        ActivityId = ActivitySeeds.ActivityEntity.Id,
+        StudentId = StudentSeeds.Student1.Id,
+        Student = StudentSeeds.Student1,
     };
 
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<GradeEntity>().HasData(
-            GradeISS with { Activity = null!, Student = null! }
+            GradeEntity with { Activity = null!, Student = null! }
         );
     }
 }

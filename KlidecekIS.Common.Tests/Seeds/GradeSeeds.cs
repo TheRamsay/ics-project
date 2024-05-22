@@ -18,7 +18,7 @@ public static class GradeSeeds
 
     public static readonly GradeEntity GradeEntity = new()
     {
-        Id = Guid.Parse("895ecda1-68f7-4144-b91c-166ba803e453"),
+        Id = Guid.Parse("895ecda1-68f7-4144-b91c-133ba803e453"),
         Note = "ISS znamka ze cviceni",
         Score = 2.10,
         Activity = ActivitySeeds.ActivityEntity,
@@ -29,7 +29,7 @@ public static class GradeSeeds
     
     public static readonly GradeEntity GradeEntityUpdate = GradeEntity with
     {
-        Id = Guid.Parse("895ecdb1-68f7-4144-b91c-166ba803e453"), 
+        Id = Guid.Parse("895ecdb1-68f7-4144-b11c-166ba223e453"), 
         Activity = null!, 
         Student = null!,
         ActivityId = ActivitySeeds.ActivityEntityUpdate.Id, 
@@ -38,7 +38,7 @@ public static class GradeSeeds
     
     public static readonly GradeEntity GradeEntityDelete = GradeEntity with
     {
-        Id = Guid.Parse("225ecdb1-68f7-4144-b91c-166ba813e453"), 
+        Id = Guid.Parse("225ecdb1-68f7-4144-a41c-166ba813e453"), 
         Activity = null!, 
         Student = null!,
         ActivityId = ActivitySeeds.ActivityEntityDelete.Id, 

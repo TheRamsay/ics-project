@@ -14,6 +14,12 @@ public class SubjectFacade(IMapper modelMapper, IUnitOfWorkFactory unitOfWorkFac
         SubjectDetailModel
     >(modelMapper, unitOfWorkFactory), ISubjectFacade
 {
+    
+    protected override IEnumerable<string> IncludesNavigationPathDetail { get; } = new[]
+    {
+        nameof(SubjectEntity.Activities),
+    };
+    
     public async Task<List<SubjectListModel>> SearchSubjectByName(string name)
     {
         var uow = UnitOfWorkFactory.Create();

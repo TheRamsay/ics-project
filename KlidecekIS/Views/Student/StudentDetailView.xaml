@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:vm="clr-namespace:KlidecekIS.ViewModels"
+                       xmlns:m="clr-namespace:KlidecekIS.BL.Models;assembly=KlidecekIS.BL"
+                       xmlns:views="clr-namespace:KlidecekIS.Views"
+                       x:DataType="vm:StudentDetailViewModel"
+                       x:Class="KlidecekIS.Views.Student.StudentDetailView"
+                       x:Name="StudentDetailViewRoot"
+                       Title="Student detail">
+
+    <StackLayout Spacing="10">
+        <Label Text="{Binding Student.Name}" />
+        <Label Text="{Binding Student.Surname}" />
+        <Image Source="{Binding Student.ImageUrl}" />
+        <Button Text="Delete" Command="{Binding DeleteCommand}" ></Button>
+        <Button Text="Edit" Command="{Binding GoToEditCommand}" ></Button>
+        <Label Text="Enrolled subjects:" />
+        <CollectionView ItemsSource="{Binding Student.Subjects}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:StudentSubjectListModel">
+                    <StackLayout>
+                        <Label Text="{Binding Subject.Name}"></Label>
+                        <Label Text="{Binding Subject.Short}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Label Text="Your grades:" />
+        <CollectionView ItemsSource="{Binding Student.Grades}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:GradeDetailModel">
+                    <StackLayout>
+                        <Label Text="{Binding Score}"></Label>
+                        <Label Text="{Binding Note}"></Label>
+                        <Label Text="{Binding Activity.Start}"></Label>
+                        <Label Text="{Binding Activity.End}"></Label>
+                        <Label Text="{Binding Activity.ActivityType}"></Label>
+                        <Label Text="{Binding Activity.Description}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</views:ContentPageBase>

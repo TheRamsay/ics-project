@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:vm="clr-namespace:KlidecekIS.ViewModels"
+                       xmlns:m="clr-namespace:KlidecekIS.BL.Models;assembly=KlidecekIS.BL"
+                       xmlns:views="clr-namespace:KlidecekIS.Views"
+                       x:DataType="vm:SubjectEditViewModel"
+                       x:Class="KlidecekIS.Views.Subject.SubjectEditView"
+                       x:Name="SubjectEditViewRoot">
+
+    <StackLayout>
+        <Label Text="Subjectik  jupi!"></Label>
+        <Label Text="Name" />
+        <Entry Text="{Binding Subject.Name}" />
+
+        <Label Text="Surname" />
+        <Entry Text="{Binding Subject.Short}" />
+
+        <Grid ColumnDefinitions="2*,3*" ColumnSpacing="10">
+
+            <Button Grid.Column="0"
+                    Text="Save"
+                    Command="{Binding SaveCommand}" />
+
+            <!-- <Button Grid.Column="1" -->
+            <!--         Text="Cancel" -->
+            <!--         Command="{Binding CancelCommand}" /> -->
+        </Grid>
+    </StackLayout>
+</views:ContentPageBase>

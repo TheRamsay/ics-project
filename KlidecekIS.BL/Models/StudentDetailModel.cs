@@ -7,7 +7,7 @@ public record StudentDetailModel : ModelBase
     public string? ImageUrl { get; set; }
 
     public ICollection<StudentSubjectListModel> Subjects { get; set; } = new List<StudentSubjectListModel>();
-    public ICollection<GradeListModel> Grades { get; set; } = new List<GradeListModel>();
+    public ICollection<GradeDetailModel> Grades { get; set; } = new List<GradeDetailModel>();
 
     public static StudentDetailModel Empty => new StudentDetailModel()
     {
@@ -16,6 +16,6 @@ public record StudentDetailModel : ModelBase
         Surname = string.Empty,
         ImageUrl = string.Empty,
         Subjects = new List<StudentSubjectListModel>(),
-        Grades = new List<GradeListModel>()
+        Grades = new List<GradeDetailModel>()
     };
 }

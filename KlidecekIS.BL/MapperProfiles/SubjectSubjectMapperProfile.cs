@@ -1,4 +1,5 @@
 using AutoMapper;
+using KlidecekIS.BL.Extensions;
 using KlidecekIS.BL.Models;
 using KlidecekIS.DAL.Entities;
 
@@ -10,5 +11,10 @@ public class StudentSubjectMapperProfile: Profile
     {
         CreateMap<StudentSubjectEntity, StudentSubjectDetailModel>().ReverseMap();
         CreateMap<StudentSubjectEntity, StudentSubjectListModel>().ReverseMap();
+        // CreateMap<StudentSubjectListModel, SubjectEntity>()
+        //     .Ignore(x => x.Activities)
+        //     .Ignore(x => x.Short)
+        //     .Ignore(x => x.Students);
+        // CreateMap<StudentEntity, SubjectDetailModel>().ReverseMap();
     }
 }

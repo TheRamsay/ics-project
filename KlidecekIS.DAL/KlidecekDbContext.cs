@@ -1,16 +1,19 @@
 using KlidecekIS.DAL.Entities;
+using KlidecekIS.DAL.Seeds;
 
 namespace KlidecekIS.DAL;
 
 using Microsoft.EntityFrameworkCore;
 
-public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoData = false) : DbContext(contextOptions)
+public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoData = true) : DbContext(contextOptions)
 {
     public DbSet<ActivityEntity> ActivityEntities => Set<ActivityEntity>();
     public DbSet<GradeEntity> Grades => Set<GradeEntity>();
     public DbSet<RoomEntity> Rooms => Set<RoomEntity>();
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
     public DbSet<SubjectEntity> Subjects => Set<SubjectEntity>();
+    
+    private bool _loaded = false;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -52,5 +55,25 @@ public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoDat
             .WithOne(i => i.Room)
             .HasForeignKey(i => i.RoomId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // if (true)
+        // {
+        //     ActivitySeeds.Seed(modelBuilder);
+        //     StudentSeeds.Seed(modelBuilder);
+        //     StudentSubjectSeeds.Seed(modelBuilder);
+        //     RoomSeeds.Seed(modelBuilder);
+        //     SubjectSeeds.Seed(modelBuilder);
+        //     GradeSeeds.Seed(modelBuilder);
+        //
+        //     if (!_loaded)
+        //     {
+        //         _loaded = true;
+        //         RoomSeeds.LoadLists();
+        //         StudentSeeds.LoadLists();
+        //         SubjectSeeds.LoadLists();
+        //         ActivitySeeds.LoadLists();
+        //     }
+        // }
+
     }
 }

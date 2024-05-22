@@ -22,7 +22,7 @@ public static class ActivitySeeds
     
     public static readonly ActivityEntity ActivityEntity = new()
     {
-        Id = Guid.Parse("0fa2e661-1a7a-43a7-8e85-98f0970b5d4a"),
+        Id = Guid.Parse("0fa2e661-1a7a-43a7-8e85-98f09c0b5d4a"),
         Description = "ISS Cviceni cislo 2",
         ActivityType = ActivityType.Lab,
         Start = DateTime.Parse("2023-11-21 10:00"),
@@ -35,7 +35,7 @@ public static class ActivitySeeds
     
     public static readonly ActivityEntity ActivityEntityUpdate = ActivityEntity with
     {
-        Id = Guid.Parse("0fa2c661-1a7a-43a7-8e85-98f0970b5d4a"),
+        Id = Guid.Parse("0fa2ca61-1a7a-43a7-8e85-98f0970b5d4a"),
         Grades = new List<GradeEntity>(),
         Room = null!,
         Subject = null!,

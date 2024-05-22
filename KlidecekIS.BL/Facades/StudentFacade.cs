@@ -14,6 +14,14 @@ public class StudentFacade(IMapper modelMapper, IUnitOfWorkFactory unitOfWorkFac
         StudentDetailModel
     >(modelMapper, unitOfWorkFactory), IStudentFacade
 {
+    protected override IEnumerable<string> IncludesNavigationPathDetail => new List<string>
+    {
+        nameof(StudentEntity.Subjects),
+        nameof(StudentEntity.Grades),
+        $"{nameof(StudentEntity.Subjects)}.{nameof(StudentSubjectEntity.Subject)}",
+        $"{nameof(StudentEntity.Grades)}.{nameof(GradeEntity.Activity)}",
+    };
+
     public async Task<List<StudentListModel>> SearchStudentByName(string name)
     {
         var uow = UnitOfWorkFactory.Create();

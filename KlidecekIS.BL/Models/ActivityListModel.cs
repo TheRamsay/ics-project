@@ -8,6 +8,8 @@ public record ActivityListModel: ModelBase
     public required DateTime End { get; set; }
     public required ActivityType ActivityType { get; set; }
     
+    public required string Description { get; set; }
+    
     public ICollection<GradeListModel> Grades { get; init; } = new List<GradeListModel>();
     
     public static ActivityListModel Empty => new ActivityListModel
@@ -15,6 +17,7 @@ public record ActivityListModel: ModelBase
         Id = Guid.Empty,
         Start = DateTime.Now,
         End = DateTime.Now,
-        ActivityType = ActivityType.Exam
+        ActivityType = ActivityType.Exam,
+        Description = string.Empty
     };
 }

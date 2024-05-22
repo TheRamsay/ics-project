@@ -27,7 +27,7 @@ public class StudentFacadeTests : FacadeTestsBase
         var searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name.ToUpper());
         var student = searchResults.Single(i => i.Id == StudentSeeds.StudentEntity.Id);
         // Assert
-        DeepAssert.Equal(Mapper.Map<StudentListModel>(StudentSeeds.StudentEntity), student with {Grades = new List<GradeListModel>(), Subjects = new List<StudentSubjectListModel>()});
+        DeepAssert.Equal(Mapper.Map<StudentListModel>(StudentSeeds.StudentEntity), student);
     }
     
     // Search should be case insensitive
@@ -38,7 +38,7 @@ public class StudentFacadeTests : FacadeTestsBase
         var searchResults = await _studentFacadeSut.SearchStudentByName(StudentSeeds.StudentEntity.Name.ToLower());
         var student = searchResults.Single(i => i.Id == StudentSeeds.StudentEntity.Id);
         // Assert
-        DeepAssert.Equal(Mapper.Map<StudentListModel>(StudentSeeds.StudentEntity), student with {Grades = new List<GradeListModel>(), Subjects = new List<StudentSubjectListModel>()});
+        DeepAssert.Equal(Mapper.Map<StudentListModel>(StudentSeeds.StudentEntity), student);
     }
 
     [Fact]

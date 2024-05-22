@@ -9,6 +9,7 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="13.0.1" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+      <PackageReference Include="Sharpnado.MaterialFrame.Maui" Version="2.0.0" />
       <PackageReference Include="xunit" Version="2.7.0" />
     </ItemGroup>
 

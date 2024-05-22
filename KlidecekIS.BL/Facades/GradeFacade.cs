@@ -11,4 +11,11 @@ public class GradeFacade(IMapper modelMapper, IUnitOfWorkFactory unitOfWorkFacto
         GradeEntity,
         GradeListModel,
         GradeDetailModel
-    >(modelMapper, unitOfWorkFactory), IGradeFacade;
+    >(modelMapper, unitOfWorkFactory), IGradeFacade
+{
+    protected override IEnumerable<string> IncludesNavigationPathDetail { get; } = new[]
+    {
+        nameof(GradeEntity.Student),
+        nameof(GradeEntity.Activity)
+    }; 
+}

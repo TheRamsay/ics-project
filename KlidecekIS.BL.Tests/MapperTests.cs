@@ -140,7 +140,9 @@ public class MapperTests
         {
             Id = Guid.NewGuid(),
             Score = 10.0,
-            Note = "Good job"
+            Note = "Good job",
+            ActivityId = Guid.NewGuid(),
+            StudentId = Guid.NewGuid()
         };
         
         var gradeEntity = mapper.Map<GradeEntity>(gradeListModel);

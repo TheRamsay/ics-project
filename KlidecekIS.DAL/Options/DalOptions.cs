@@ -1,12 +1,11 @@
-namespace KlidecekIS.DAL.DalOptions;
+namespace KlidecekIS.DAL.Options;
 
 
 public record DalOptions
 {
     public required string DatabaseDirectory { get; init; }
-    private string DatabaseName { get; init; } = null!;
+    public string DatabaseName { get; init; } = null!;
     public string DatabaseFilePath => Path.Combine(DatabaseDirectory, DatabaseName!);
     public bool RecreateDatabaseEachTime { get; init; } = false;
-
-    
+    public bool SeedDemoData { get; init; } = false;
 }

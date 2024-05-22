@@ -14,6 +14,12 @@ public class ActivityFacade(IMapper modelMapper, IUnitOfWorkFactory unitOfWorkFa
         ActivityDetailModel
     >(modelMapper, unitOfWorkFactory), IActivityFacade
 {
+    
+    protected override IEnumerable<string> IncludesNavigationPathDetail { get; } = new[]
+    {
+        nameof(ActivityEntity.Subject)
+    };
+    
     public async Task<List<ActivityListModel>> SearchActivityByDescription(string description)
     {
         var uow = UnitOfWorkFactory.Create();

@@ -11,6 +11,9 @@
                        Title="Student list">
 
     <StackLayout>
+        <SearchBar Placeholder="Search students by name or surname..."
+                   Text="{Binding SearchText, Mode=TwoWay}"
+                   SearchCommand="{Binding SearchStudentsCommand}" /> 
         <Grid ColumnDefinitions="*,*,*"
               RowDefinitions="auto" RowSpacing="10" ColumnSpacing="10">
             <Button Text="Sort by Name" Grid.Column="0"

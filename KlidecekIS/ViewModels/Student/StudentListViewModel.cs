@@ -15,9 +15,11 @@ public partial class StudentListViewModel(
     : ViewModelBase(messengerService), IRecipient<StudentEditMessage>, IRecipient<StudentDeleteMessage>
 {
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
-    
+
     private bool NameSortAscending = true;
     private bool SurnameSortAscending = true;
+
+    public string SearchText { get; set; } = string.Empty;
 
     protected override async Task LoadDataAsync()
     {
@@ -36,21 +38,29 @@ public partial class StudentListViewModel(
     {
         await navigationService.GoToAsync("/edit");
     }
-    
+
+    [RelayCommand]
+    public async Task SearchStudents()
+    {
+        Students = await studentFacade.SearchStudentByName(SearchText);
+        OnPropertyChanged(nameof(Students));
+    }
+
+
     [RelayCommand]
     private async Task SortByName()
     {
         Students = await studentFacade.SortBy(student => student.Name, NameSortAscending);
         NameSortAscending = !NameSortAscending;
     }
-    
+
     [RelayCommand]
     private async Task SortBySurname()
     {
         Students = await studentFacade.SortBy(student => student.Surname, SurnameSortAscending);
         SurnameSortAscending = !SurnameSortAscending;
     }
-    
+
     public async void Receive(StudentEditMessage message)
     {
         await LoadDataAsync();

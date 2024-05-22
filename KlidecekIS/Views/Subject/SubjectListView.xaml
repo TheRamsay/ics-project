@@ -8,43 +8,48 @@
                        Title="Subjects"
                        x:Class="KlidecekIS.Views.Subject.SubjectListView"
                        x:Name="SubjectListViewRoot">
-    <Grid ColumnDefinitions="*"
-          RowDefinitions="auto" RowSpacing="10">
+    <StackLayout>
+        <SearchBar Placeholder="Search subjects"
+                   Text="{Binding SearchText, Mode=TwoWay}"
+                   SearchCommand="{Binding SearchSubjectsCommand}" />
+        <Grid ColumnDefinitions="*"
+              RowDefinitions="auto" RowSpacing="10">
 
-        <CollectionView ItemsSource="{Binding Subjects}"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        EmptyView="Nothing to display 😭">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical"
-                                 VerticalItemSpacing="5" />
-            </CollectionView.ItemsLayout>
+            <CollectionView ItemsSource="{Binding Subjects}"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            EmptyView="Nothing to display 😭">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:SubjectListModel">
+                        <Frame Padding="10"
+                               IsClippedToBounds="True"
+                               HeightRequest="100">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:SubjectListModel">
-                    <Frame Padding="10"
-                           IsClippedToBounds="True"
-                           HeightRequest="100">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={x:Reference SubjectListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                    CommandParameter="{Binding Id}" />
+                            </Frame.GestureRecognizers>
 
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding Source={x:Reference SubjectListViewRoot}, Path=BindingContext.GoToDetailCommand}"
-                                CommandParameter="{Binding Id}" />
-                        </Frame.GestureRecognizers>
-
-                        <Grid ColumnDefinitions="auto,*,150" ColumnSpacing="10"
-                              RowDefinitions="*,*">
-                            <!-- <Image Grid.Column="0" Grid.Row="0" -->
-                            <!--        Grid.RowSpan="2" -->
-                            <!--        Source="{Binding ImageUrl}" /> -->
-                            <Label Grid.Column="1" Grid.Row="0"
-                                   Text="{Binding Name}" />
-                            <Label Grid.Column="2" Grid.Row="0"
-                                   Text="{Binding  Short}" />
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+                            <Grid ColumnDefinitions="auto,*,150" ColumnSpacing="10"
+                                  RowDefinitions="*,*">
+                                <!-- <Image Grid.Column="0" Grid.Row="0" -->
+                                <!--        Grid.RowSpan="2" -->
+                                <!--        Source="{Binding ImageUrl}" /> -->
+                                <Label Grid.Column="1" Grid.Row="0"
+                                       Text="{Binding Name}" />
+                                <Label Grid.Column="2" Grid.Row="0"
+                                       Text="{Binding  Short}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </StackLayout>
 </views:ContentPageBase>

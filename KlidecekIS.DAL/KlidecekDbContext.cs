@@ -56,24 +56,24 @@ public class KlidecekDbContext(DbContextOptions contextOptions, bool seedDemoDat
             .HasForeignKey(i => i.RoomId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // if (true)
-        // {
-        //     ActivitySeeds.Seed(modelBuilder);
-        //     StudentSeeds.Seed(modelBuilder);
-        //     StudentSubjectSeeds.Seed(modelBuilder);
-        //     RoomSeeds.Seed(modelBuilder);
-        //     SubjectSeeds.Seed(modelBuilder);
-        //     GradeSeeds.Seed(modelBuilder);
-        //
-        //     if (!_loaded)
-        //     {
-        //         _loaded = true;
-        //         RoomSeeds.LoadLists();
-        //         StudentSeeds.LoadLists();
-        //         SubjectSeeds.LoadLists();
-        //         ActivitySeeds.LoadLists();
-        //     }
-        // }
+        if (true)
+        {
+            ActivitySeeds.Seed(modelBuilder);
+            StudentSeeds.Seed(modelBuilder);
+            StudentSubjectSeeds.Seed(modelBuilder);
+            RoomSeeds.Seed(modelBuilder);
+            SubjectSeeds.Seed(modelBuilder);
+            GradeSeeds.Seed(modelBuilder);
+        
+            if (!_loaded)
+            {
+                _loaded = true;
+                RoomSeeds.LoadLists();
+                StudentSeeds.LoadLists();
+                SubjectSeeds.LoadLists();
+                ActivitySeeds.LoadLists();
+            }
+        }
 
     }
 }

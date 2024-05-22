@@ -15,6 +15,8 @@ public partial class SubjectListViewModel(
     : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>, IRecipient<SubjectDeleteMessage>
 {
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
+    
+    public string SearchText { get; set; } = string.Empty;
 
     protected override async Task LoadDataAsync()
     {
@@ -32,6 +34,13 @@ public partial class SubjectListViewModel(
     private async Task GoToCreateAsync()
     {
         await navigationService.GoToAsync("/edit");
+    }
+
+    [RelayCommand]
+    public async Task SearchSubjects()
+    {
+        Subjects = await subjectFacade.SearchSubjectByName(SearchText);
+        OnPropertyChanged(nameof(Subjects));
     }
 
     public async void Receive(SubjectEditMessage message)

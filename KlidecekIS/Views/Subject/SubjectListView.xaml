@@ -12,6 +12,15 @@
         <SearchBar Placeholder="Search subjects"
                    Text="{Binding SearchText, Mode=TwoWay}"
                    SearchCommand="{Binding SearchSubjectsCommand}" />
+        <Grid ColumnDefinitions="*,*,*" ColumnSpan="10"
+              RowDefinitions="auto" RowSpacing="10" ColumnSpacing="10">
+            <Button Text="Sort by Name" Grid.Column="0"
+                    Command="{Binding SortByNameCommand}" />
+            <Button Text="Sort by Short" Grid.Column="1"
+                    Command="{Binding SortByShortCommand}" />
+            <Button Text="Add new subject" BackgroundColor="PaleVioletRed" Grid.Column="2"
+                    Command="{Binding AddNewSubjectCommand}" />
+        </Grid>
         <Grid ColumnDefinitions="*"
               RowDefinitions="auto" RowSpacing="10">
 

@@ -18,6 +18,9 @@ public partial class SubjectListViewModel(
     
     public string SearchText { get; set; } = string.Empty;
 
+    private bool NameSortAscending = true;
+    private bool ShortSortAscending = true;
+
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
@@ -49,6 +52,20 @@ public partial class SubjectListViewModel(
 >>>>>>> main
     }
 
+    [RelayCommand]
+    private async Task SortByName()
+    {
+        Subjects = await subjectFacade.SortBy(subject => subject.Name, NameSortAscending);
+        NameSortAscending = !NameSortAscending;
+    }
+
+    [RelayCommand]
+    private async Task SortByShort()
+    {
+        Subjects = await subjectFacade.SortBy(subject => subject.Short, ShortSortAscending);
+        ShortSortAscending = !ShortSortAscending;
+    }
+
     public async void Receive(SubjectEditMessage message)
     {
         await LoadDataAsync();
@@ -58,4 +75,10 @@ public partial class SubjectListViewModel(
     {
         await LoadDataAsync();
     }
+    
+    [RelayCommand]
+    private async Task AddNewSubject()
+    {
+        await navigationService.GoToAsync("/edit");
+    } 
 }
